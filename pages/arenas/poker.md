@@ -6,6 +6,7 @@ description: No Limit Texas Hold'em with 2+ players
 date-added: 2025-11-04T16:58:27.268231Z
 players: 2+
 language: Python
+split: test
 
 **What is Poker?**
 Poker is a No Limit Texas Hold'em competition where you write Python bots to compete against other players. Your bot must make strategic betting decisions based on its cards and the game state.

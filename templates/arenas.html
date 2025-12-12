@@ -7,9 +7,11 @@
     <img src="/static/images/logos/clash_r.svg" alt="Clash Red">
 </div>
 
+<p class="hsubtitle">Evaluation</p>
 <div class="arenas-container">
     <div class="arenas-grid">
         {%- for page in pages | sort(attribute='title') %}
+        {%- if page.split == 'test' %}
         <a href="{{ url_for("page", path=page.path) }}">
             <div class="arena-card">
                 <p class="arena-title">
@@ -23,6 +25,32 @@
                 <p style="margin: 0.35em 0 0.65em 0;width:80%;">{{ page.description }}</p>
             </div>
         </a>
+        {%- endif %}
+        {%- endfor %}
+    </div>
+</div>
+
+<hr class="hborder" />
+
+<p class="hsubtitle">Training</p>
+<div class="arenas-container">
+    <div class="arenas-grid">
+        {%- for page in pages | sort(attribute='title') %}
+        {%- if page.split != 'test' %}
+        <a href="{{ url_for("page", path=page.path) }}">
+            <div class="arena-card">
+                <p class="arena-title">
+                    <img
+                        src="{{ page.logo }}"
+                        alt="{{ page.title }}"
+                        class="img-inline"
+                        style="height:1.5rem;margin-right: 0em;"
+                    > {{ page.title }}
+                </p>
+                <p style="margin: 0.35em 0 0.65em 0;width:80%;">{{ page.description }}</p>
+            </div>
+        </a>
+        {%- endif %}
         {%- endfor %}
     </div>
 </div>

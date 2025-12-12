@@ -6,6 +6,7 @@ description: Tank combat - outlast and outgun opponents
 date-added: 2025-11-04T16:58:27.268231Z
 players: 2+
 language: Java
+split: test
 
 **What is RoboCode?**
 RoboCode (Tank Royale) is a programming game where your code is the tank. You write Java programs that control tanks in a deterministic, turn-based arena, making real-time decisions about movement, aiming, and firing.
