@@ -8,7 +8,8 @@ Since CodeClash's initial release, our top priority has been enabling practition
 As part of this effort, we've released an initial set of **10** arenas that we're designating as the official "**train**" split of CodeClash.
 
 - [Bridge](/arenas/bridge/)
-- [Chess](/arenas/chess)
+- [Chess](/arenas/chess/)
+- [Figgie](/arenas/figgie/)
 - [Gomoku](/arenas/gomoku/)
 - [Halite II](/arenas/halite2/)
 - [Halite III](/arenas/halite2/)

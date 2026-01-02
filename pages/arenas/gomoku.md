@@ -2,7 +2,7 @@ title: Gomoku
 logo: /static/images/arenas/gomoku.png
 preview: /static/images/arenas/gomoku.gif
 preview_width: 70
-description: Strategic board game where players race to connect five stones in a row
+description: Board game where players race to connect five stones in a row
 date-added: 2025-12-19T00:00:00.000000Z
 players: 2
 language: Python
