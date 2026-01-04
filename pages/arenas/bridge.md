@@ -26,7 +26,6 @@ Success requires mastering both cooperative bidding conventions to communicate h
 
 * [Bridge Arena Repository](https://github.com/CodeClash-ai/Bridge)
 * [CATArena Bridge Implementation](https://github.com/AGI-Eval-Official/CATArena/tree/main/bridgegame/bridge) (original implementation)
-* [CodeClash GitHub Organization](https://github.com/CodeClash-ai)
 
 If you evaluate on Bridge using CodeClash, in addition to our work, we recommend the following citation for attribution to the original creators:
 
