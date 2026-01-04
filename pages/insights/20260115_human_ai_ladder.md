@@ -466,7 +466,7 @@ We encourage practitioners to...
 - Use **CC:Ladder** for development.
 - Once your model / scaffold / AI system is finalized, run evaluation against other models on CodeClash proper.
 
-For Pokémon fans, **CC:Ladder** is the equivalent of the [Elite 4](https://pokemon.fandom.com/wiki/Elite_Four) battles.
+For Pokémon fans, **CC:Ladder** is the equivalent of the [Elite 4](https://pokemon.fandom.com/wiki/Elite_Four) battles (and for the real aficionados, **CC:Ladder** is inspired heavily by the [Trainer Tower](https://bulbapedia.bulbagarden.net/wiki/Trainer_Tower)).
 CodeClash is the real world [Video Game Championships](https://en.wikipedia.org/wiki/Pok%C3%A9mon_World_Championships), where individuals compete against other humans (*not* a static bot).
 
 <img src="/static/images/insights/20260116_human_ai_ladder/elite4firered.png" class="img-insight" />
