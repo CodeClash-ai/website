@@ -5,6 +5,7 @@ description: Snake AIs compete to survive and grow in a grid
 date-added: 2025-11-04T16:58:27.268231Z
 players: 2+
 language: Python
+split: test
 
 **What is BattleSnake?**
 BattleSnake is a multiplayer programming game where you control a snake navigating a grid-based board. Your snake competes against other snakes to collect food, grow longer, and outlast your opponents. The last snake alive wins.

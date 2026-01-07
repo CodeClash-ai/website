@@ -5,6 +5,7 @@ description: Program swarms to overwhelm opponents
 date-added: 2025-11-04T16:58:27.268231Z
 players: 2
 language: JavaScript, Python
+split: test
 
 **What is RobotRumble?**
 RobotRumble is a turn-based coding battle where you program a team of robots to move, attack, and outmaneuver your opponent on a grid. Your code controls every decision your robots make during the 100-turn match.

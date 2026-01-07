@@ -27,6 +27,9 @@ pages_insights = [p for p in pages if p.path.startswith('insights/')]
 pages_arenas = [p for p in pages if p.path.startswith('arenas/')]
 with open("data/leaderboards.json") as f:
     leaderboards = json.load(f)
+with open("data/team.json") as f:
+    team_data = json.load(f)
+    author_links = {c['name']: c['link'] for c in team_data['contributors']}
 
 # Custom filters
 @app.template_filter('format_timestamp')
@@ -53,7 +56,7 @@ def index():
 
 @app.route('/<path:path>/')
 def page(path):
-    return render_template('page.html', page=pages.get_or_404(path), all_leaderboards=leaderboards)
+    return render_template('page.html', page=pages.get_or_404(path), all_leaderboards=leaderboards, author_links=author_links)
 
 @app.route('/team/')
 def team():
@@ -67,7 +70,7 @@ def insights():
 
 @app.route('/insights/<path:path>/')
 def insight(path):
-    return render_template('page.html', page=pages.get_or_404('insights/' + path), all_leaderboards=leaderboards)
+    return render_template('page.html', page=pages.get_or_404('insights/' + path), all_leaderboards=leaderboards, author_links=author_links)
 
 @app.route('/arenas/')
 def arenas():
