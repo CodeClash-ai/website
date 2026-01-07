@@ -22,14 +22,18 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
-
-pages_insights = [p for p in pages if p.path.startswith('insights/')]
-pages_arenas = [p for p in pages if p.path.startswith('arenas/')]
 with open("data/leaderboards.json") as f:
     leaderboards = json.load(f)
 with open("data/team.json") as f:
     team_data = json.load(f)
     author_links = {c['name']: c['link'] for c in team_data['contributors']}
+
+# Helpers
+def get_insights_pages():
+    return [p for p in pages if p.path.startswith('insights/')]
+
+def get_arenas_pages():
+    return [p for p in pages if p.path.startswith('arenas/')]
 
 # Custom filters
 @app.template_filter('format_timestamp')
@@ -66,7 +70,7 @@ def team():
 
 @app.route('/insights/')
 def insights():
-    return render_template('insights.html', pages=pages_insights, all_leaderboards=leaderboards)
+    return render_template('insights.html', pages=get_insights_pages(), all_leaderboards=leaderboards)
 
 @app.route('/insights/<path:path>/')
 def insight(path):
@@ -74,7 +78,7 @@ def insight(path):
 
 @app.route('/arenas/')
 def arenas():
-    return render_template('arenas.html', pages=pages_arenas, all_leaderboards=leaderboards)
+    return render_template('arenas.html', pages=get_arenas_pages(), all_leaderboards=leaderboards)
 
 @app.route('/arenas/<path:path>/')
 def arena(path):
@@ -98,12 +102,12 @@ def page():
 
 @freezer.register_generator
 def insight():
-    for p in pages_insights:
+    for p in get_insights_pages():
         yield {'path': p.path[9:]}  # Strip 'insights/' prefix
 
 @freezer.register_generator
 def arena():
-    for p in pages_arenas:
+    for p in get_arenas_pages():
         yield {'path': p.path[7:]}  # Strip 'arenas/' prefix
 
 @freezer.register_generator
@@ -117,7 +121,9 @@ def static():
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "build":
-        freezer.freeze()
+        # Ensure an application context is active during freeze
+        with app.app_context():
+            freezer.freeze()
     else:
         port = int(os.environ.get('PORT', 5001))
         app.run(host='0.0.0.0', port=port)
