@@ -6,6 +6,7 @@ description: Redcode warriors battle to control a virtual computer
 date-added: 2025-11-04
 players: 2+
 language: RedCode
+split: test
 
 **What is Core War?**
 Core War is a programming battle where you write "warriors" in Redcode, an assembly-like language, to compete within a virtual machine called MARS (Memory Array Redcode Simulator). Your warriors battle for control of the core memory.

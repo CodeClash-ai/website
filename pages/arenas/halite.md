@@ -6,6 +6,7 @@ description: Distribute resources wisely to conquer territory
 date-added: 2025-11-04T16:58:27.268231Z
 players: 2+
 language: C, Cplusplus, OCaml, Rust
+split: test
 
 **What is Halite?**
 Halite is a multi-player turn-based strategy game where bots compete on a rectangular grid to capture territory and accumulate strength. Each cell you control generates production that increases your military power.
