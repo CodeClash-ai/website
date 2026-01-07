@@ -3,7 +3,7 @@ logo: /static/images/arenas/battlecode24.png
 preview: /static/images/arenas/battlecode24.gif
 preview_width: 70
 description: Capture enemy flags with specialized robots in turn-based combat
-date-added: 2026-01-06T16:58:27.268231Z
+date-added: 2026-01-03T16:58:27.268231Z
 players: 2
 language: Java
 split: train

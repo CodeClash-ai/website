@@ -28,7 +28,7 @@ As an initial step, we're releasing an initial set of **9** arenas that we're de
   <img src="/static/images/arenas/halite3.gif" alt="Arena 3" style="width:33%; height:auto; object-fit:cover;" />
 </div>
 <div style="margin-top:0.5em; display:flex; gap:12px; justify-content:center;">
-  <img src="/static/images/arenas/battlecode24.gif" alt="Arena 1" style="width:33%; height:auto; object-fit:cover;" />
+  <img src="/static/images/arenas/battlecode23.gif" alt="Arena 1" style="width:33%; height:auto; object-fit:cover;" />
   <img src="/static/images/arenas/battlecode24.gif" alt="Arena 2" style="width:33%; height:auto; object-fit:cover;" />
   <img src="/static/images/arenas/battlecode25.gif" alt="Arena 3" style="width:33%; height:auto; object-fit:cover;" />
 </div>
