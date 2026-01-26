@@ -3,11 +3,11 @@ date: 2026-01-15
 description: Where does AI rank among public solutions by human programmers?
 authors: John Yang
 
+**tl;dr** We introduce boss battles as a new format for evaluating LMs' coding + reasoning capabilities.
+
 We pit [Claude 4.5 Sonnet against <img src="/static/images/insights/20251108_human_ai/gigachad.jpg" class="img-inline" style="height:1.2rem;margin-right:0em;" /> GigaChad](/insights/20251105_human_ai/) in [RobotRumble](/arenas/robotrumble) and found that today's best coding models still struggle heavily to develop suboptimal codebases into ones that rival the best human written solutions.
 
 Inspired by this finding, we introduce **CC:Ladder**, a twist that makes evaluating LMs as competitive, long-horizon software developers **hill-climable** and **cheaper**.
-
-**tl;dr** 
 
 ## How it works
 
@@ -425,15 +425,15 @@ For **RobotRumble**, the top ten:
 
 On Core War
 
-* <img src="/static/images/orgs/anthropic.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Claude Sonnet 4.5 reaches
-* <img src="/static/images/orgs/openai.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> GPT 5 (medium thinking) reaches
-* <img src="/static/images/orgs/google.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Gemini 2.5 Pro reaches
+* <img src="/static/images/orgs/anthropic.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Claude Opus 4.5 reaches *[coming soon]*
+* <img src="/static/images/orgs/openai.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> GPT 5.2 (medium thinking) reaches *[coming soon]*
+* <img src="/static/images/orgs/google.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Gemini 3 Pro reaches *[coming soon]*
 
 On RobotRumble
 
-* <img src="/static/images/orgs/openai.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> GPT 5 (medium thinking) reaches
-* <img src="/static/images/orgs/anthropic.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Claude Sonnet 4.5 reaches
-* <img src="/static/images/orgs/google.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Gemini 2.5 Pro reaches
+* <img src="/static/images/orgs/anthropic.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Claude Opus 4.5 reaches *[coming soon]*
+* <img src="/static/images/orgs/openai.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> GPT 5.2 (medium thinking) reaches *[coming soon]*
+* <img src="/static/images/orgs/google.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Gemini 3 Pro reaches *[coming soon]*
 
 ## How to run?
 
@@ -461,11 +461,6 @@ player:
 
 ## Relationship between CC:Ladder & CodeClash
 
-We encourage practitioners to...
-
-- Use **CC:Ladder** for development.
-- Once your model / scaffold / AI system is finalized, run evaluation against other models on CodeClash proper.
-
 For Pokémon fans, **CC:Ladder** is the equivalent of the [Elite 4](https://pokemon.fandom.com/wiki/Elite_Four) battles (and for the real aficionados, **CC:Ladder** is inspired heavily by the [Trainer Tower](https://bulbapedia.bulbagarden.net/wiki/Trainer_Tower)).
 CodeClash is the real world [Video Game Championships](https://en.wikipedia.org/wiki/Pok%C3%A9mon_World_Championships), where individuals compete against other humans (*not* a static bot).
 
@@ -473,6 +468,9 @@ CodeClash is the real world [Video Game Championships](https://en.wikipedia.org/
 <div style="text-align:center;font-size:0.9em;">
 As with the Elite Four, <b>CC:Ladder</b> tests progression against fixed opponents, whereas CodeClash reflects real competition by measuring performance against intelligent competitors.
 </div>
+
+We recommend CC:Ladder be treated as a proper evaluation as well.
+Similar to how SWE-bench Lite and Verified were created as easier subsets of SWE-bench, we think 
 
 CodeClash remains the north-star evaluation.
 Competition against dynamic, intelligent competition is more challenging than static solutions.
