@@ -600,6 +600,7 @@ summary {
     padding: 0.25rem 0.5rem;
     border-left: 3px solid #e1e4e8;
     margin-bottom: 0.5rem;
+    background-color: rgba(128, 128, 128, 0.1);
     transition: border-color 0.2s;
 }
 
