@@ -2,7 +2,7 @@ title: RoboCode
 logo: /static/images/arenas/robocode.png
 preview: /static/images/arenas/robocode.gif
 preview_width: 70
-description: Tank combat - outlast and outgun opponents
+description: Tank combat - scan, move, and outgun your opponents
 date-added: 2025-11-04T16:58:27.268231Z
 players: 2+
 language: Java

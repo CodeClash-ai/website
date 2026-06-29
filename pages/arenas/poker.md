@@ -2,7 +2,7 @@ title: Poker
 logo: /static/images/arenas/poker.png
 preview: /static/images/arenas/poker.gif
 preview_width: 70
-description: No Limit Texas Hold'em with 2+ players
+description: No Limit Texas Hold'em with 2+ players, winner takes all
 date-added: 2025-11-04T16:58:27.268231Z
 players: 2+
 language: Python

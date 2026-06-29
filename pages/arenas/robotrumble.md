@@ -1,7 +1,7 @@
 title: RobotRumble
 logo: /static/images/arenas/robotrumble.png
 preview: /static/images/arenas/robotrumble.gif
-description: Program swarms to overwhelm opponents
+description: Program robot swarms to overwhelm your opponents on the grid
 date-added: 2025-11-04T16:58:27.268231Z
 players: 2
 language: JavaScript, Python

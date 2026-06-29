@@ -6,7 +6,7 @@ description: Supply-chain agents negotiate contracts to maximize profit
 date-added: 2026-05-05T00:00:00.000000Z
 players: 2+
 language: Python
-split: test
+split: train
 
 **What is SCML?**
 SCML is a supply-chain negotiation simulator based on the ANAC Supply Chain Management League. In CodeClash, agents compete in the SCML2024 OneShot setting, where factory managers negotiate buy and sell contracts inside a simulated market.

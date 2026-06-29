@@ -2,11 +2,11 @@ title: CybORG
 logo: /static/images/arenas/cyborg.png
 preview: /static/images/arenas/cyborg.gif
 preview_width: 70
-description: Blue-team cyber-defense agents operate in a simulated CAGE environment
+description: Blue-team cyber-defense agents in a simulated CAGE environment
 date-added: 2026-05-05T00:00:00.000000Z
 players: 2+
 language: Python
-split: test
+split: train
 
 **What is CybORG?**
 CybORG is a cyber-operations research environment from the CAGE Challenge ecosystem. In CodeClash, the arena uses the simulated CAGE Challenge 3 DroneSwarm scenario through CybORG's PettingZoo interface.
