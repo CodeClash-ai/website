@@ -521,6 +521,13 @@ nav {
     font-weight: var(--weight-bold);
 }
 
+.ladder-badge {
+    margin-left: 0.2em;
+    font-size: 0.7em;
+    vertical-align: super;
+    line-height: 0;
+}
+
 .arenas-legend {
     margin: 1.25rem 0 0 0;
     text-align: center;
@@ -528,10 +535,82 @@ nav {
     font-size: var(--text-sm);
 }
 
-.arenas-legend .eval-badge {
+.arenas-legend a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.arenas-legend a:hover {
+    color: var(--accent);
+}
+
+.arenas-legend .eval-badge,
+.arenas-legend .ladder-badge {
     margin: 0 0.15em 0 0;
     font-size: var(--text-base);
     vertical-align: baseline;
+}
+
+/* Ladder Elo distribution: stat tiles + histogram */
+.ladder-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+}
+
+.ladder-stat {
+    flex: 1 1 0;
+    min-width: 6.5rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.ladder-stat-num {
+    display: block;
+    font-weight: var(--weight-bold);
+    font-size: var(--text-md);
+    letter-spacing: -0.02em;
+    color: var(--fg);
+}
+
+.ladder-stat-label {
+    display: block;
+    margin-top: 0.15em;
+    font-size: var(--text-sm);
+    color: var(--muted);
+}
+
+.ladder-figure {
+    margin: 1.25rem 0;
+}
+
+.ladder-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.ladder-figure .bar {
+    fill: var(--accent);
+    transition: opacity 0.15s;
+}
+
+.ladder-figure .bar:hover { opacity: 0.7; }
+.ladder-figure .axis { stroke: var(--border); }
+.ladder-figure .grid { stroke: var(--border); stroke-dasharray: 2 3; opacity: 0.6; }
+.ladder-figure .tick { fill: var(--muted); font-size: 12px; }
+.ladder-figure .median { stroke: var(--fg); stroke-dasharray: 4 3; opacity: 0.55; }
+.ladder-figure .median-label { fill: var(--fg); font-size: 11px; opacity: 0.7; }
+.ladder-figure figcaption {
+    margin-top: 0.5em;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    text-align: center;
 }
 
 @media (max-width: 900px) {
