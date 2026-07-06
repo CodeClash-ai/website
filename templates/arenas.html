@@ -18,14 +18,18 @@
                         alt="{{ page.title }}"
                         class="img-inline"
                         style="height:1.5rem;margin-right: 0em;"
-                    > {{ page.title }}{%- if page.split == 'test' %}<sup class="eval-badge" title="Test set environment">✚</sup>{%- endif %}
+                    > {{ page.title }}{%- if page.split == 'test' %}<sup class="eval-badge" title="Test set arena">✚</sup>{%- endif %}{%- if page.ladder %}<sup class="ladder-badge" title="Has a CC:Ladder of ranked human solutions">🪜</sup>{%- endif %}
                 </p>
                 <p style="margin: 0.35em 0 0.65em 0;width:80%;">{{ page.description }}</p>
             </div>
         </a>
         {%- endfor %}
     </div>
-    <p class="arenas-legend"><span class="eval-badge">✚</span> = Test set environment</p>
+    <p class="arenas-legend">
+        <span class="eval-badge">✚</span> = Test set arena
+        &nbsp;&bull;&nbsp;
+        <span class="ladder-badge">🪜</span> = Has a <a href="/insights/20260115_human_ai_ladder/">CC:Ladder</a>
+    </p>
 </div>
 
 {% endblock content %}

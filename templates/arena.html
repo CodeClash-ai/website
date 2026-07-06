@@ -29,6 +29,10 @@
       style="height:1.2rem;width:auto;vertical-align:text-bottom;">
     {% if not loop.last %} {% endif %}
   {% endfor %}
+  {% if page.ladder %}
+  &bull;
+  <a href="#cc-ladder" title="Has a CC:Ladder of ranked human solutions" style="text-decoration:none;">🪜 <span class="subtext">Has</span> CC:Ladder</a>
+  {% endif %}
 </div>
 <br>
 

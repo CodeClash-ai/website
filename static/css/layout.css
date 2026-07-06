@@ -521,6 +521,13 @@ nav {
     font-weight: var(--weight-bold);
 }
 
+.ladder-badge {
+    margin-left: 0.2em;
+    font-size: 0.7em;
+    vertical-align: super;
+    line-height: 0;
+}
+
 .arenas-legend {
     margin: 1.25rem 0 0 0;
     text-align: center;
@@ -528,7 +535,18 @@ nav {
     font-size: var(--text-sm);
 }
 
-.arenas-legend .eval-badge {
+.arenas-legend a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.arenas-legend a:hover {
+    color: var(--accent);
+}
+
+.arenas-legend .eval-badge,
+.arenas-legend .ladder-badge {
     margin: 0 0.15em 0 0;
     font-size: var(--text-base);
     vertical-align: baseline;
