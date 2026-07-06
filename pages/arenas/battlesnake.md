@@ -24,9 +24,47 @@ Success requires balancing multiple objectives: finding food to avoid starvation
 
 <h2 id="cc-ladder">🪜 CC:Ladder</h2>
 
-BattleSnake has a **CC:Ladder** — a ranked ladder of open-source human snakes that turns the arena into a hill-climbable evaluation. A model starts against the weakest human snake and must win a majority of `n` rounds (and the final round) to advance to a stronger opponent; its score is the highest-ranked human it defeats. See [Introducing CC:Ladder](/insights/20260115_human_ai_ladder/) for the full format and motivation.
+> See [Introducing CC:Ladder](/insights/20260115_human_ai_ladder/) for the full format and motivation.
 
 The ladder is built from **50 open-source human BattleSnakes** (hosted as `human/*` branches on [CodeClash-ai/BattleSnake](https://github.com/CodeClash-ai/BattleSnake)). To rank them, we run a round-robin over all `50 * 49 / 2 = 1,225` unique pairs at 250 simulations each, then fit a Bradley-Terry model to the pairwise win matrix via maximum likelihood with L2 regularization (strength 0.01, base Elo 1200, slope 400).
+
+<div class="ladder-stats"><div class="ladder-stat"><span class="ladder-stat-num">50</span><span class="ladder-stat-label">human bots</span></div><div class="ladder-stat"><span class="ladder-stat-num">379&#8211;1,883</span><span class="ladder-stat-label">Elo range</span></div><div class="ladder-stat"><span class="ladder-stat-num">1,269</span><span class="ladder-stat-label">median Elo</span></div><div class="ladder-stat"><span class="ladder-stat-num">1,504</span><span class="ladder-stat-label">spread</span></div></div>
+
+The 50 snakes span **379&ndash;1,883 Elo** &mdash; a 1,504-point spread &mdash; but the climb is gradual: the top snake (`robosnake`) leads the runner-up by just 68 Elo, and half the field sits between 968 and 1,433. With no runaway favorite, every rung is a meaningful step up.
+
+<figure class="ladder-figure">
+<svg viewBox="0 0 680 250" role="img" aria-label="Histogram of snakes Elo ratings" preserveAspectRatio="xMidYMid meet">
+<line class="grid" x1="46" y1="210.0" x2="664" y2="210.0"/>
+<text class="tick" x="38" y="214.0" text-anchor="end">0</text>
+<line class="grid" x1="46" y1="146.0" x2="664" y2="146.0"/>
+<text class="tick" x="38" y="150.0" text-anchor="end">5</text>
+<line class="grid" x1="46" y1="82.0" x2="664" y2="82.0"/>
+<text class="tick" x="38" y="86.0" text-anchor="end">10</text>
+<line class="grid" x1="46" y1="18.0" x2="664" y2="18.0"/>
+<text class="tick" x="38" y="22.0" text-anchor="end">15</text>
+<path class="bar" d="M47.5,210.0 L47.5,201.2 Q47.5,197.2 51.5,197.2 L92.0,197.2 Q96.0,197.2 96.0,201.2 L96.0,210.0 Z"><title>379 to 504 Elo: 1 bot</title></path>
+<path class="bar" d="M99.0,210.0 L99.0,201.2 Q99.0,197.2 103.0,197.2 L143.5,197.2 Q147.5,197.2 147.5,201.2 L147.5,210.0 Z"><title>504 to 630 Elo: 1 bot</title></path>
+<path class="bar" d="M150.5,210.0 L150.5,150.0 Q150.5,146.0 154.5,146.0 L195.0,146.0 Q199.0,146.0 199.0,150.0 L199.0,210.0 Z"><title>630 to 755 Elo: 5 bots</title></path>
+<path class="bar" d="M202.0,210.0 L202.0,188.4 Q202.0,184.4 206.0,184.4 L246.5,184.4 Q250.5,184.4 250.5,188.4 L250.5,210.0 Z"><title>755 to 880 Elo: 2 bots</title></path>
+<path class="bar" d="M253.5,210.0 L253.5,137.2 Q253.5,133.2 257.5,133.2 L298.0,133.2 Q302.0,133.2 302.0,137.2 L302.0,210.0 Z"><title>880 to 1,006 Elo: 6 bots</title></path>
+<path class="bar" d="M305.0,210.0 L305.0,162.8 Q305.0,158.8 309.0,158.8 L349.5,158.8 Q353.5,158.8 353.5,162.8 L353.5,210.0 Z"><title>1,006 to 1,131 Elo: 4 bots</title></path>
+<path class="bar" d="M356.5,210.0 L356.5,162.8 Q356.5,158.8 360.5,158.8 L401.0,158.8 Q405.0,158.8 405.0,162.8 L405.0,210.0 Z"><title>1,131 to 1,256 Elo: 4 bots</title></path>
+<path class="bar" d="M408.0,210.0 L408.0,73.2 Q408.0,69.2 412.0,69.2 L452.5,69.2 Q456.5,69.2 456.5,73.2 L456.5,210.0 Z"><title>1,256 to 1,382 Elo: 11 bots</title></path>
+<path class="bar" d="M459.5,210.0 L459.5,98.8 Q459.5,94.8 463.5,94.8 L504.0,94.8 Q508.0,94.8 508.0,98.8 L508.0,210.0 Z"><title>1,382 to 1,507 Elo: 9 bots</title></path>
+<path class="bar" d="M511.0,210.0 L511.0,150.0 Q511.0,146.0 515.0,146.0 L555.5,146.0 Q559.5,146.0 559.5,150.0 L559.5,210.0 Z"><title>1,507 to 1,632 Elo: 5 bots</title></path>
+<path class="bar" d="M614.0,210.0 L614.0,188.4 Q614.0,184.4 618.0,184.4 L658.5,184.4 Q662.5,184.4 662.5,188.4 L662.5,210.0 Z"><title>1,758 to 1,883 Elo: 2 bots</title></path>
+<line class="axis" x1="46" y1="210" x2="664" y2="210" stroke-width="1.5"/>
+<text class="tick" x="46.0" y="228.0" text-anchor="middle">379</text>
+<text class="tick" x="200.5" y="228.0" text-anchor="middle">755</text>
+<text class="tick" x="355.0" y="228.0" text-anchor="middle">1,131</text>
+<text class="tick" x="509.5" y="228.0" text-anchor="middle">1,507</text>
+<text class="tick" x="664.0" y="228.0" text-anchor="middle">1,883</text>
+<line class="median" x1="411.5" y1="18" x2="411.5" y2="210"/>
+<text class="median-label" x="417.5" y="28.0" text-anchor="start">median 1,269</text>
+<text class="tick" x="355.0" y="246" text-anchor="middle">Elo rating &#8594;</text>
+</svg>
+<figcaption>Distribution of Elo across the 50 human BattleSnakes. The field climbs fairly evenly, with no single runaway leader.</figcaption>
+</figure>
 
 The top ten:
 

@@ -25,9 +25,48 @@ Success demands clever tactics—crafting replicators that spawn copies, scanner
 
 <h2 id="cc-ladder">🪜 CC:Ladder</h2>
 
-Core War has a **CC:Ladder** — a ranked ladder of open-source human warriors that turns the arena into a hill-climbable evaluation. A model starts against the weakest human warrior and must win a majority of `n` rounds (and the final round) to advance to a stronger opponent; its score is the highest-ranked human it defeats. See [Introducing CC:Ladder](/insights/20260115_human_ai_ladder/) for the full format and motivation.
+> See [Introducing CC:Ladder](/insights/20260115_human_ai_ladder/) for the full format and motivation.
 
 The ladder is built from **264 open-source human warriors**, collected by crawling the Core War online [directory](http://www.koth.org/planar/by-name/complete.htm) and hosted as `human/*` branches on [CodeClash-ai/CoreWar](https://github.com/CodeClash-ai/CoreWar/branches). To rank them, we run a round-robin over all unique pairs at 4,000 simulations each, then fit a Bradley-Terry model to the pairwise win matrix via maximum likelihood with L2 regularization (strength 0.01, base Elo 1200, slope 400).
+
+<div class="ladder-stats"><div class="ladder-stat"><span class="ladder-stat-num">264</span><span class="ladder-stat-label">human bots</span></div><div class="ladder-stat"><span class="ladder-stat-num">-890&#8211;1,409</span><span class="ladder-stat-label">Elo range</span></div><div class="ladder-stat"><span class="ladder-stat-num">1,213</span><span class="ladder-stat-label">median Elo</span></div><div class="ladder-stat"><span class="ladder-stat-num">2,298</span><span class="ladder-stat-label">spread</span></div></div>
+
+Core War's 264 warriors form the tightest field of any ladder: the strongest warrior edges the runner-up by under **7 Elo**, and 91% of the field falls within one standard deviation (&plusmn;168) of the 1200 mean. Beneath that dense competitive pack sits a long tail of broken or trivial warriors trailing down to -889 &mdash; so the early rungs fall quickly before the real wall near the top.
+
+<figure class="ladder-figure">
+<svg viewBox="0 0 680 250" role="img" aria-label="Histogram of warriors Elo ratings" preserveAspectRatio="xMidYMid meet">
+<line class="grid" x1="46" y1="210.0" x2="664" y2="210.0"/>
+<text class="tick" x="38" y="214.0" text-anchor="end">0</text>
+<line class="grid" x1="46" y1="171.6" x2="664" y2="171.6"/>
+<text class="tick" x="38" y="175.6" text-anchor="end">25</text>
+<line class="grid" x1="46" y1="133.2" x2="664" y2="133.2"/>
+<text class="tick" x="38" y="137.2" text-anchor="end">50</text>
+<line class="grid" x1="46" y1="94.8" x2="664" y2="94.8"/>
+<text class="tick" x="38" y="98.8" text-anchor="end">75</text>
+<line class="grid" x1="46" y1="56.4" x2="664" y2="56.4"/>
+<text class="tick" x="38" y="60.4" text-anchor="end">100</text>
+<line class="grid" x1="46" y1="18.0" x2="664" y2="18.0"/>
+<text class="tick" x="38" y="22.0" text-anchor="end">125</text>
+<path class="bar" d="M47.5,210.0 L47.5,210.0 Q47.5,208.5 49.0,208.5 L71.1,208.5 Q72.6,208.5 72.6,210.0 L72.6,210.0 Z"><title>-890 to -785 Elo: 1 bot</title></path>
+<path class="bar" d="M356.5,210.0 L356.5,210.0 Q356.5,208.5 358.0,208.5 L380.1,208.5 Q381.6,208.5 381.6,210.0 L381.6,210.0 Z"><title>260 to 364 Elo: 1 bot</title></path>
+<path class="bar" d="M497.0,210.0 L497.0,210.0 Q497.0,208.5 498.5,208.5 L520.5,208.5 Q522.0,208.5 522.0,210.0 L522.0,210.0 Z"><title>782 to 886 Elo: 1 bot</title></path>
+<path class="bar" d="M525.0,210.0 L525.0,207.9 Q525.0,203.9 529.0,203.9 L546.1,203.9 Q550.1,203.9 550.1,207.9 L550.1,210.0 Z"><title>886 to 991 Elo: 4 bots</title></path>
+<path class="bar" d="M553.1,210.0 L553.1,180.2 Q553.1,176.2 557.1,176.2 L574.2,176.2 Q578.2,176.2 578.2,180.2 L578.2,210.0 Z"><title>991 to 1,095 Elo: 22 bots</title></path>
+<path class="bar" d="M581.2,210.0 L581.2,83.4 Q581.2,79.4 585.2,79.4 L602.3,79.4 Q606.3,79.4 606.3,83.4 L606.3,210.0 Z"><title>1,095 to 1,200 Elo: 85 bots</title></path>
+<path class="bar" d="M609.3,210.0 L609.3,45.0 Q609.3,41.0 613.3,41.0 L630.4,41.0 Q634.4,41.0 634.4,45.0 L634.4,210.0 Z"><title>1,200 to 1,304 Elo: 110 bots</title></path>
+<path class="bar" d="M637.4,210.0 L637.4,152.6 Q637.4,148.6 641.4,148.6 L658.5,148.6 Q662.5,148.6 662.5,152.6 L662.5,210.0 Z"><title>1,304 to 1,409 Elo: 40 bots</title></path>
+<line class="axis" x1="46" y1="210" x2="664" y2="210" stroke-width="1.5"/>
+<text class="tick" x="46.0" y="228.0" text-anchor="middle">-890</text>
+<text class="tick" x="214.5" y="228.0" text-anchor="middle">-263</text>
+<text class="tick" x="355.0" y="228.0" text-anchor="middle">260</text>
+<text class="tick" x="495.5" y="228.0" text-anchor="middle">782</text>
+<text class="tick" x="664.0" y="228.0" text-anchor="middle">1,409</text>
+<line class="median" x1="611.3" y1="18" x2="611.3" y2="210"/>
+<text class="median-label" x="605.3" y="28.0" text-anchor="end">median 1,213</text>
+<text class="tick" x="355.0" y="246" text-anchor="middle">Elo rating &#8594;</text>
+</svg>
+<figcaption>Distribution of Elo across the 264 human Core War warriors. The competitive pack is packed tightly near 1200, with a long lower tail of broken warriors.</figcaption>
+</figure>
 
 The top ten:
 
