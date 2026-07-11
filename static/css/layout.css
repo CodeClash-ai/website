@@ -457,19 +457,19 @@ nav {
     color: var(--gray);
 }
 
-.insight-page {
+.prose {
     margin: 0 auto;
     width: 75%;
     padding-bottom: 3em;
 }
 
-.insight-page a {
+.prose a {
     color: var(--fg);
     text-decoration: none;
     border-bottom: 1px solid var(--fg);
 }
 
-.insight-page a:hover {
+.prose a:hover {
     color: var(--accent);
     border-bottom: 1px solid var(--accent);
 }
@@ -683,6 +683,22 @@ pre.prettyprint {
     background-color: var(--bg) !important;
 }
 
+/* Prettify's default token colors are tuned for light backgrounds and vanish
+   on the dark theme; supply a legible dark palette so code stays highlighted. */
+:root[data-theme="dark"] pre.prettyprint .pln,
+:root[data-theme="dark"] pre.prettyprint .pun { color: var(--fg); }
+:root[data-theme="dark"] pre.prettyprint .str,
+:root[data-theme="dark"] pre.prettyprint .atv { color: #a5d6a7; }
+:root[data-theme="dark"] pre.prettyprint .kwd,
+:root[data-theme="dark"] pre.prettyprint .tag,
+:root[data-theme="dark"] pre.prettyprint .fun { color: #82aaff; }
+:root[data-theme="dark"] pre.prettyprint .lit { color: #f78c6c; }
+:root[data-theme="dark"] pre.prettyprint .typ,
+:root[data-theme="dark"] pre.prettyprint .atn,
+:root[data-theme="dark"] pre.prettyprint .dec,
+:root[data-theme="dark"] pre.prettyprint .var { color: #c792ea; }
+:root[data-theme="dark"] pre.prettyprint .com { color: #8a929b; }
+
 pre p {
     margin: 0;
 }
@@ -775,7 +791,7 @@ blockquote {
     }
 
     .insights-container,
-    .insight-page,
+    .prose,
     .team-container {
         width: 90%;
     }
