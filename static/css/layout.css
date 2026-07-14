@@ -629,19 +629,22 @@ nav {
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    width: 75%;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
 }
 
 .team-card {
     display: block;
     padding: 1.5rem;
-    border: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     text-decoration: none;
     color: inherit;
     cursor: pointer;
     background-color: var(--bg);
-    margin-right: -1px;
-    margin-bottom: -1px;
 }
 
 .team-card:hover {
