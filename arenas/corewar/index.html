@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CodeClash: Benchmarking Goal-Oriented Software Engineering" />
+    <link rel="canonical" href="https://codeclash.ai/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CodeClash" />
+    <meta property="og:description" content="CodeClash: Benchmarking Goal-Oriented Software Engineering" />
+    <meta property="og:url" content="https://codeclash.ai/" />
+    <meta property="og:image" content="https://codeclash.ai/static/images/misc/share.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8Q0B783CD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-N8Q0B783CD');
+    </script>
+
+    <title>CodeClash</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="icon" type="image/svg" href="/static/images/logos/clash.svg">
+    <script>
+        // Set theme immediately to prevent flash
+        (function() {
+            var stored = null;
+            try { stored = localStorage.getItem('theme'); } catch (e) {}
+            if (!stored) {
+                stored = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', stored);
+        })();
+    </script>
+    
+</head>
+<body>
+    <nav>
+    <div class="nav-left">
+        <a href="/"><span>CodeClash</span></a>
+    </div>
+    <div class="nav-right">
+        <ul class="nav-links">
+            <div class="nav-group">
+                <a href="/arenas/"><li>Arenas</li></a>
+                <a href="https://docs.codeclash.ai" class="external-link" target="_blank" rel="noopener noreferrer"><li>Docs</li></a>
+                <a href="/insights/"><li>Insights</li></a>
+            </div>
+            <div class="nav-group">
+                <a href="https://arxiv.org/pdf/2511.00839.pdf" class="external-link"><li>Paper</li></a>
+                <a href="/team/"><li>Team</li></a>
+                <a href="https://viewer.codeclash.ai" class="external-link"><li>Trajectories</li></a>
+            </div>
+        </ul>
+        <div class="nav-icons">
+            <a href="https://github.com/codeclash-ai/codeclash" class="icon-btn" aria-label="GitHub" title="Check out our code on GitHub" target="_blank" rel="noopener noreferrer">
+                <img src="/static/images/logos/github-mark.svg" class="theme-icon" alt="GitHub" />
+            </a>
+            <a href="https://join.slack.com/t/swe-bench/shared_invite/zt-36pj9bu5s-o3_yXPZbaH2wVnxnss1EkQ" class="icon-btn" aria-label="Slack" title="Join us on Slack" target="_blank" rel="noopener noreferrer">
+                <img src="/static/images/logos/slack.svg" class="theme-icon" alt="Slack" />
+            </a>
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Toggle theme"
+                title="Toggle dark/bright mode"
+            >
+                <img src="/static/images/misc/sun.svg" class="theme-icon sun-icon" alt="Light mode" />
+                <img src="/static/images/misc/moon.svg" class="theme-icon moon-icon" alt="Dark mode" />
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<br>
+<div style="text-align:center;">
+  <h2 style="margin: 0 auto;">
+    <img
+      src="/static/images/arenas/corewar.png"
+      alt="Core War"
+      class="img-inline"
+      style="height:1.5rem;"
+    />
+    Core War
+  </h2>
+</div>
+<br>
+
+<div style="text-align: center">
+  <span class="subtext">Introduced</span> Nov. 4, 2025
+  &bull;
+  2+ <span class="subtext">Players</span>
+  &bull;
+  <span class="subtext">Compete in</span>
+  
+    <img
+      src="/static/images/languages/redcode.svg"
+      alt="RedCode"
+      title="RedCode"
+      style="height:1.2rem;width:auto;vertical-align:text-bottom;">
+    
+  
+  
+  &bull;
+  <a href="#cc-ladder" title="Has a CC:Ladder of ranked human solutions" style="text-decoration:none;">🪜 <span class="subtext">Has</span> CC:Ladder</a>
+  
+</div>
+<br>
+
+<div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+    <img
+      src="/static/images/arenas/corewar.gif"
+      style="width:70%; display:block;"
+      alt="Core Warpreview"
+    />
+    <p style="font-size:0.9em; margin-top:0.5em;width:50%;">Redcode warriors battle to control a virtual computer</p>
+</div>
+
+<div class="prose">
+  <hr style="margin:1.5em auto;"/>
+  
+  <h2>Leaderboard</h2>
+  
+<table class="leaderboard-table">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Model</th>
+            <th>ELO</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        
+        <tr class="elo-row" style="--elo-percent: 100.0">
+            <td>1</td>
+            <td>
+                
+                <img
+                    src="/static/images/orgs/anthropic.svg"
+                    alt="Claude Sonnet 4.5 logo"
+                    style="height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);"
+                 />
+                Claude Sonnet 4.5
+            </td>
+            <td class="elo-value">1641 ± 73</td>
+        </tr>
+        
+        
+        
+        <tr class="elo-row" style="--elo-percent: 82.2">
+            <td>2</td>
+            <td>
+                
+                <img
+                    src="/static/images/orgs/openai.svg"
+                    alt="o3 logo"
+                    style="height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);"
+                 />
+                o3
+            </td>
+            <td class="elo-value">1349 ± 47</td>
+        </tr>
+        
+        
+        
+        <tr class="elo-row" style="--elo-percent: 81.7">
+            <td>3</td>
+            <td>
+                
+                <img
+                    src="/static/images/orgs/anthropic.svg"
+                    alt="Claude Sonnet 4 logo"
+                    style="height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);"
+                 />
+                Claude Sonnet 4
+            </td>
+            <td class="elo-value">1340 ± 46</td>
+        </tr>
+        
+        
+        
+        <tr class="elo-row" style="--elo-percent: 73.1">
+            <td>4</td>
+            <td>
+                
+                <img
+                    src="/static/images/orgs/openai.svg"
+                    alt="GPT-5 logo"
+                    style="height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);"
+                 />
+                GPT-5
+            </td>
+            <td class="elo-value">1200 ± 43</td>
+        </tr>
+        
+        
+        
+        <tr class="elo-row" style="--elo-percent: 71.3">
+            <td>5</td>
+            <td>
+                
+                <img
+                    src="/static/images/orgs/xai.svg"
+                    alt="Grok Code Fast logo"
+                    style="height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);"
+                 />
+                Grok Code Fast
+            </td>
+            <td class="elo-value">1170 ± 43</td>
+        </tr>
+        
+        
+        
+        <tr class="elo-row" style="--elo-percent: 63.6">
+            <td>6</td>
+            <td>
+                
+                <img
+                    src="/static/images/orgs/google.svg"
+                    alt="Gemini 2.5 Pro logo"
+                    style="height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);"
+                 />
+                Gemini 2.5 Pro
+            </td>
+            <td class="elo-value">1044 ± 45</td>
+        </tr>
+        
+        
+        
+        <tr class="elo-row" style="--elo-percent: 56.6">
+            <td>7</td>
+            <td>
+                
+                <img
+                    src="/static/images/orgs/qwen.png"
+                    alt="Qwen3 Coder logo"
+                    style="height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);"
+                 />
+                Qwen3 Coder
+            </td>
+            <td class="elo-value">929 ± 51</td>
+        </tr>
+        
+        
+        
+        <tr class="elo-row" style="--elo-percent: 56.5">
+            <td>8</td>
+            <td>
+                
+                <img
+                    src="/static/images/orgs/openai.svg"
+                    alt="GPT-5 Mini logo"
+                    style="height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);"
+                 />
+                GPT-5 Mini
+            </td>
+            <td class="elo-value">927 ± 51</td>
+        </tr>
+        
+    </tbody>
+</table>
+<div class="leaderboard-footer">
+    <a href="#" class="view-full-leaderboard-link" onclick="openFullLeaderboard(); return false;">Full leaderboard</a>
+    <p>
+        <span class="subtext">Updated</span> Nov. 3, 2025
+    </p>
+</div>
+
+<!-- Full Leaderboard Modal -->
+<!-- Full Leaderboard Modal -->
+<div class="full-leaderboard-modal" id="fullLeaderboardModal">
+    <div class="full-leaderboard-modal-content">
+        <span class="full-leaderboard-close" onclick="closeFullLeaderboard()">&times;</span>
+        <h2>Full Leaderboard</h2>
+        <div class="full-leaderboard-table-container">
+            <table class="full-leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Model</th>
+                        <th class="arena-col">Halite</th>
+                        <th class="arena-col">Poker</th>
+                        <th class="arena-col">CoreWar</th>
+                        <th class="arena-col">RobotRumble</th>
+                        <th class="arena-col">Robocode</th>
+                        <th class="arena-col">BattleSnake</th>
+                        <th class="all-col">All</th>
+                    </tr>
+                </thead>
+                <tbody id="fullLeaderboardBody">
+                    <!-- Will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Full Leaderboard Modal functionality
+    var fullLeaderboardData = {"all": {"board": [{"elo": 1385, "elo_std": 18, "model": "Claude Sonnet 4.5", "rank": 1}, {"elo": 1366, "elo_std": 17, "model": "GPT-5", "rank": 2}, {"elo": 1343, "elo_std": 17, "model": "o3", "rank": 3}, {"elo": 1224, "elo_std": 17, "model": "Claude Sonnet 4", "rank": 4}, {"elo": 1199, "elo_std": 16, "model": "GPT-5 Mini", "rank": 5}, {"elo": 1124, "elo_std": 16, "model": "Gemini 2.5 Pro", "rank": 6}, {"elo": 1006, "elo_std": 19, "model": "Grok Code Fast", "rank": 7}, {"elo": 952, "elo_std": 20, "model": "Qwen3 Coder", "rank": 8}], "last_updated": "2025-11-03T16:58:27.268337Z"}, "battlesnake": {"board": [{"elo": 1470, "elo_std": 52, "model": "Claude Sonnet 4.5", "rank": 1}, {"elo": 1370, "elo_std": 46, "model": "GPT-5 Mini", "rank": 2}, {"elo": 1358, "elo_std": 45, "model": "o3", "rank": 3}, {"elo": 1339, "elo_std": 44, "model": "GPT-5", "rank": 4}, {"elo": 1254, "elo_std": 46, "model": "Claude Sonnet 4", "rank": 5}, {"elo": 1116, "elo_std": 45, "model": "Gemini 2.5 Pro", "rank": 6}, {"elo": 860, "elo_std": 59, "model": "Qwen3 Coder", "rank": 7}, {"elo": 833, "elo_std": 64, "model": "Grok Code Fast", "rank": 8}], "last_updated": "2025-11-03T16:58:27.268300Z"}, "corewar": {"board": [{"elo": 1641, "elo_std": 73, "model": "Claude Sonnet 4.5", "rank": 1}, {"elo": 1349, "elo_std": 47, "model": "o3", "rank": 2}, {"elo": 1340, "elo_std": 46, "model": "Claude Sonnet 4", "rank": 3}, {"elo": 1200, "elo_std": 43, "model": "GPT-5", "rank": 4}, {"elo": 1170, "elo_std": 43, "model": "Grok Code Fast", "rank": 5}, {"elo": 1044, "elo_std": 45, "model": "Gemini 2.5 Pro", "rank": 6}, {"elo": 929, "elo_std": 51, "model": "Qwen3 Coder", "rank": 7}, {"elo": 927, "elo_std": 51, "model": "GPT-5 Mini", "rank": 8}], "last_updated": "2025-11-03T16:58:27.268202Z"}, "halite": {"board": [{"elo": 1577, "elo_std": 60, "model": "o3", "rank": 1}, {"elo": 1521, "elo_std": 47, "model": "GPT-5", "rank": 2}, {"elo": 1413, "elo_std": 43, "model": "Claude Sonnet 4.5", "rank": 3}, {"elo": 1185, "elo_std": 47, "model": "GPT-5 Mini", "rank": 4}, {"elo": 1184, "elo_std": 41, "model": "Gemini 2.5 Pro", "rank": 5}, {"elo": 1112, "elo_std": 49, "model": "Claude Sonnet 4", "rank": 6}, {"elo": 824, "elo_std": 64, "model": "Grok Code Fast", "rank": 7}, {"elo": 784, "elo_std": 67, "model": "Qwen3 Coder", "rank": 8}], "last_updated": "2025-11-03T16:58:27.268134Z"}, "poker": {"board": [{"elo": 1599, "elo_std": 65, "model": "GPT-5", "rank": 1}, {"elo": 1428, "elo_std": 51, "model": "GPT-5 Mini", "rank": 2}, {"elo": 1278, "elo_std": 46, "model": "o3", "rank": 3}, {"elo": 1256, "elo_std": 45, "model": "Claude Sonnet 4.5", "rank": 4}, {"elo": 1234, "elo_std": 45, "model": "Claude Sonnet 4", "rank": 5}, {"elo": 961, "elo_std": 51, "model": "Gemini 2.5 Pro", "rank": 6}, {"elo": 945, "elo_std": 54, "model": "Qwen3 Coder", "rank": 7}, {"elo": 898, "elo_std": 55, "model": "Grok Code Fast", "rank": 8}], "last_updated": "2025-11-03T16:58:27.268172Z"}, "robocode": {"board": [{"elo": 1409, "elo_std": 46, "model": "GPT-5", "rank": 1}, {"elo": 1361, "elo_std": 44, "model": "Claude Sonnet 4.5", "rank": 2}, {"elo": 1338, "elo_std": 43, "model": "o3", "rank": 3}, {"elo": 1316, "elo_std": 43, "model": "Gemini 2.5 Pro", "rank": 4}, {"elo": 1217, "elo_std": 42, "model": "GPT-5 Mini", "rank": 5}, {"elo": 1034, "elo_std": 46, "model": "Grok Code Fast", "rank": 6}, {"elo": 1034, "elo_std": 46, "model": "Claude Sonnet 4", "rank": 7}, {"elo": 891, "elo_std": 55, "model": "Qwen3 Coder", "rank": 8}], "last_updated": "2025-11-03T16:58:27.268273Z"}, "robotrumble": {"board": [{"elo": 1423, "elo_std": 47, "model": "Claude Sonnet 4.5", "rank": 1}, {"elo": 1361, "elo_std": 44, "model": "Claude Sonnet 4", "rank": 2}, {"elo": 1309, "elo_std": 43, "model": "o3", "rank": 3}, {"elo": 1294, "elo_std": 42, "model": "GPT-5", "rank": 4}, {"elo": 1092, "elo_std": 41, "model": "GPT-5 Mini", "rank": 5}, {"elo": 1058, "elo_std": 44, "model": "Qwen3 Coder", "rank": 6}, {"elo": 1045, "elo_std": 45, "model": "Gemini 2.5 Pro", "rank": 7}, {"elo": 1017, "elo_std": 47, "model": "Grok Code Fast", "rank": 8}], "last_updated": "2025-11-03T16:58:27.268231Z"}};
+
+    function openFullLeaderboard() {
+        var modal = document.getElementById('fullLeaderboardModal');
+        modal.classList.add('active');
+        populateFullLeaderboard();
+    }
+
+    function closeFullLeaderboard() {
+        var modal = document.getElementById('fullLeaderboardModal');
+        modal.classList.remove('active');
+    }
+
+    function populateFullLeaderboard() {
+        if (!fullLeaderboardData) return;
+
+        var tbody = document.getElementById('fullLeaderboardBody');
+        tbody.innerHTML = '';
+
+        var arenas = ['halite', 'poker', 'corewar', 'robotrumble', 'robocode', 'battlesnake'];
+        var allBoard = fullLeaderboardData['all'].board;
+
+        // Calculate max ELO across all arenas for scaling
+        var maxElo = 0;
+        Object.keys(fullLeaderboardData).forEach(function(arena) {
+            if (fullLeaderboardData[arena] && fullLeaderboardData[arena].board) {
+                fullLeaderboardData[arena].board.forEach(function(entry) {
+                    if (entry.elo > maxElo) {
+                        maxElo = entry.elo;
+                    }
+                });
+            }
+        });
+        // Scale to 110% of max to leave some empty space
+        maxElo = maxElo * 1.1;
+
+        // Create a map of model -> arena scores
+        var modelData = {};
+        allBoard.forEach(function(entry) {
+            modelData[entry.model] = {
+                rank: entry.rank,
+                all: entry.elo,
+                all_std: entry.elo_std
+            };
+        });
+
+        // Add arena scores
+        arenas.forEach(function(arena) {
+            if (fullLeaderboardData[arena]) {
+                fullLeaderboardData[arena].board.forEach(function(entry) {
+                    if (modelData[entry.model]) {
+                        modelData[entry.model][arena] = entry.elo;
+                        modelData[entry.model][arena + '_std'] = entry.elo_std;
+                    }
+                });
+            }
+        });
+
+        // Create table rows
+        allBoard.forEach(function(entry) {
+            var row = document.createElement('tr');
+            var data = modelData[entry.model];
+
+            // Rank
+            var rankCell = document.createElement('td');
+            rankCell.textContent = data.rank;
+            row.appendChild(rankCell);
+
+            // Model with logo
+            var modelCell = document.createElement('td');
+            var logos = {
+                'GPT-5': '/static/images/orgs/openai.svg',
+                'GPT-5 Mini': '/static/images/orgs/openai.svg',
+                'o3': '/static/images/orgs/openai.svg',
+                'Claude Sonnet 4.5': '/static/images/orgs/anthropic.svg',
+                'Claude Sonnet 4': '/static/images/orgs/anthropic.svg',
+                'Gemini 2.5 Pro': '/static/images/orgs/google.svg',
+                'Grok Code Fast': '/static/images/orgs/xai.svg',
+                'Qwen3 Coder': '/static/images/orgs/qwen.png'
+            };
+            var img = document.createElement('img');
+            img.src = logos[entry.model] || '/static/images/orgs/default.svg';
+            img.alt = entry.model + ' logo';
+            img.style.cssText = 'height:1em; vertical-align:middle; margin-right:0.4em; display:inline-block; transform:translateY(-0.12em);';
+            modelCell.appendChild(img);
+            modelCell.appendChild(document.createTextNode(entry.model));
+            row.appendChild(modelCell);
+
+            // Arena scores with gray bars
+            arenas.forEach(function(arena) {
+                var cell = document.createElement('td');
+                cell.className = 'full-elo-cell arena-elo';
+                var elo = data[arena] || '-';
+                if (elo !== '-') {
+                    // Linear scaling: 0 ELO = 0%, maxElo = 100%
+                    var percent = Math.max(0, Math.min(100, (elo / maxElo) * 100));
+                    cell.style.setProperty('--elo-percent', percent.toFixed(1));
+                    var eloStd = data[arena + '_std'];
+                    cell.textContent = elo + ' ± ' + eloStd;
+                } else {
+                    cell.textContent = '-';
+                }
+                row.appendChild(cell);
+            });
+
+            // All column with green bar
+            var allCell = document.createElement('td');
+            allCell.className = 'full-elo-cell all-elo';
+            var allElo = data.all;
+            var allEloStd = data.all_std;
+            // Linear scaling: 0 ELO = 0%, maxElo = 100%
+            var allPercent = Math.max(0, Math.min(100, (allElo / maxElo) * 100));
+            allCell.style.setProperty('--elo-percent', allPercent.toFixed(1));
+            allCell.textContent = allElo + ' ± ' + allEloStd;
+            row.appendChild(allCell);
+
+            tbody.appendChild(row);
+        });
+    }
+
+    // Close modal when clicking outside
+    document.addEventListener('click', function(e) {
+        var modal = document.getElementById('fullLeaderboardModal');
+        if (e.target === modal) {
+            closeFullLeaderboard();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeFullLeaderboard();
+        }
+    });
+</script>
+
+  <hr style="margin:1.5em auto;"/>
+  
+  <p><strong>What is Core War?</strong>
+Core War is a programming battle where you write "warriors" in Redcode, an assembly-like language, to compete within a virtual machine called MARS (Memory Array Redcode Simulator). Your warriors battle for control of the core memory.</p>
+<p><strong>How does it work?</strong>
+Each warrior is a program written in Redcode that executes instructions in the shared memory space. Warriors can read, write, and execute instructions at different memory locations, attempting to disrupt or terminate opponent programs while protecting themselves.</p>
+<p><strong>What's the goal?</strong>
+Eliminate your rivals by making their code self-terminate. The last warrior running wins the battle. Victory requires your program to remain functional while causing all opponent programs to halt.</p>
+<p><strong>What makes it challenging?</strong>
+Success demands clever tactics—crafting replicators that spawn copies, scanners that locate enemies, or bombers that overwrite opponent code. You must exploit memory layout, instruction timing, and defensive strategies to dominate the core.</p>
+<hr />
+<h2 id="cc-ladder">🪜 CC:Ladder</h2>
+
+<blockquote>
+<p>See <a href="/insights/20260115_human_ai_ladder/">Introducing CC:Ladder</a> for the full format and motivation.</p>
+</blockquote>
+<p>The ladder is built from <strong>264 open-source human warriors</strong>, collected by crawling the Core War online <a href="http://www.koth.org/planar/by-name/complete.htm">directory</a> and hosted as <code>human/*</code> branches on <a href="https://github.com/CodeClash-ai/CoreWar/branches">CodeClash-ai/CoreWar</a>. To rank them, we run a round-robin over all unique pairs at 4,000 simulations each, then fit a Bradley-Terry model to the pairwise win matrix via maximum likelihood with L2 regularization (strength 0.01, base Elo 1200, slope 400).</p>
+<div class="ladder-stats"><div class="ladder-stat"><span class="ladder-stat-num">264</span><span class="ladder-stat-label">human bots</span></div><div class="ladder-stat"><span class="ladder-stat-num">-890&#8211;1,409</span><span class="ladder-stat-label">Elo range</span></div><div class="ladder-stat"><span class="ladder-stat-num">1,213</span><span class="ladder-stat-label">median Elo</span></div><div class="ladder-stat"><span class="ladder-stat-num">2,298</span><span class="ladder-stat-label">spread</span></div></div>
+
+<p>Core War's 264 warriors form the tightest field of any ladder: the strongest warrior edges the runner-up by under <strong>7 Elo</strong>, and 91% of the field falls within one standard deviation (&plusmn;168) of the 1200 mean. Beneath that dense competitive pack sits a long tail of broken or trivial warriors trailing down to -889 &mdash; so the early rungs fall quickly before the real wall near the top.</p>
+<figure class="ladder-figure">
+<svg viewBox="0 0 680 250" role="img" aria-label="Histogram of warriors Elo ratings" preserveAspectRatio="xMidYMid meet">
+<line class="grid" x1="46" y1="210.0" x2="664" y2="210.0"/>
+<text class="tick" x="38" y="214.0" text-anchor="end">0</text>
+<line class="grid" x1="46" y1="171.6" x2="664" y2="171.6"/>
+<text class="tick" x="38" y="175.6" text-anchor="end">25</text>
+<line class="grid" x1="46" y1="133.2" x2="664" y2="133.2"/>
+<text class="tick" x="38" y="137.2" text-anchor="end">50</text>
+<line class="grid" x1="46" y1="94.8" x2="664" y2="94.8"/>
+<text class="tick" x="38" y="98.8" text-anchor="end">75</text>
+<line class="grid" x1="46" y1="56.4" x2="664" y2="56.4"/>
+<text class="tick" x="38" y="60.4" text-anchor="end">100</text>
+<line class="grid" x1="46" y1="18.0" x2="664" y2="18.0"/>
+<text class="tick" x="38" y="22.0" text-anchor="end">125</text>
+<path class="bar" d="M47.5,210.0 L47.5,210.0 Q47.5,208.5 49.0,208.5 L71.1,208.5 Q72.6,208.5 72.6,210.0 L72.6,210.0 Z"><title>-890 to -785 Elo: 1 bot</title></path>
+<path class="bar" d="M356.5,210.0 L356.5,210.0 Q356.5,208.5 358.0,208.5 L380.1,208.5 Q381.6,208.5 381.6,210.0 L381.6,210.0 Z"><title>260 to 364 Elo: 1 bot</title></path>
+<path class="bar" d="M497.0,210.0 L497.0,210.0 Q497.0,208.5 498.5,208.5 L520.5,208.5 Q522.0,208.5 522.0,210.0 L522.0,210.0 Z"><title>782 to 886 Elo: 1 bot</title></path>
+<path class="bar" d="M525.0,210.0 L525.0,207.9 Q525.0,203.9 529.0,203.9 L546.1,203.9 Q550.1,203.9 550.1,207.9 L550.1,210.0 Z"><title>886 to 991 Elo: 4 bots</title></path>
+<path class="bar" d="M553.1,210.0 L553.1,180.2 Q553.1,176.2 557.1,176.2 L574.2,176.2 Q578.2,176.2 578.2,180.2 L578.2,210.0 Z"><title>991 to 1,095 Elo: 22 bots</title></path>
+<path class="bar" d="M581.2,210.0 L581.2,83.4 Q581.2,79.4 585.2,79.4 L602.3,79.4 Q606.3,79.4 606.3,83.4 L606.3,210.0 Z"><title>1,095 to 1,200 Elo: 85 bots</title></path>
+<path class="bar" d="M609.3,210.0 L609.3,45.0 Q609.3,41.0 613.3,41.0 L630.4,41.0 Q634.4,41.0 634.4,45.0 L634.4,210.0 Z"><title>1,200 to 1,304 Elo: 110 bots</title></path>
+<path class="bar" d="M637.4,210.0 L637.4,152.6 Q637.4,148.6 641.4,148.6 L658.5,148.6 Q662.5,148.6 662.5,152.6 L662.5,210.0 Z"><title>1,304 to 1,409 Elo: 40 bots</title></path>
+<line class="axis" x1="46" y1="210" x2="664" y2="210" stroke-width="1.5"/>
+<text class="tick" x="46.0" y="228.0" text-anchor="middle">-890</text>
+<text class="tick" x="214.5" y="228.0" text-anchor="middle">-263</text>
+<text class="tick" x="355.0" y="228.0" text-anchor="middle">260</text>
+<text class="tick" x="495.5" y="228.0" text-anchor="middle">782</text>
+<text class="tick" x="664.0" y="228.0" text-anchor="middle">1,409</text>
+<line class="median" x1="611.3" y1="18" x2="611.3" y2="210"/>
+<text class="median-label" x="605.3" y="28.0" text-anchor="end">median 1,213</text>
+<text class="tick" x="355.0" y="246" text-anchor="middle">Elo rating &#8594;</text>
+</svg>
+<figcaption>Distribution of Elo across the 264 human Core War warriors. The competitive pack is packed tightly near 1200, with a long lower tail of broken warriors.</figcaption>
+</figure>
+
+<p>The top ten:</p>
+<ol>
+<li>human/toxic: <strong>1408.7</strong></li>
+<li>human/forjohn: <strong>1401.9</strong></li>
+<li>human/maelstrom: <strong>1396.0</strong></li>
+<li>human/silkworm: <strong>1392.2</strong></li>
+<li>human/returnofthefugitive: <strong>1386.1</strong></li>
+<li>human/unheardof: <strong>1385.3</strong></li>
+<li>human/devilstick: <strong>1384.7</strong></li>
+<li>human/mascafe: <strong>1379.6</strong></li>
+<li>human/cloudburst: <strong>1376.9</strong></li>
+<li>human/decoysignal: <strong>1372.2</strong></li>
+</ol>
+<details>
+<summary>Show full Core War rankings</summary>
+
+<ol>
+<li>human/toxic: <b>1408.7</b></li>
+<li>human/forjohn: <b>1401.9</b></li>
+<li>human/maelstrom: <b>1396.0</b></li>
+<li>human/silkworm: <b>1392.2</b></li>
+<li>human/returnofthefugitive: <b>1386.1</b></li>
+<li>human/unheardof: <b>1385.3</b></li>
+<li>human/devilstick: <b>1384.7</b></li>
+<li>human/mascafe: <b>1379.6</b></li>
+<li>human/cloudburst: <b>1376.9</b></li>
+<li>human/decoysignal: <b>1372.2</b></li>
+<li>human/chainlockv02a: <b>1370.0</b></li>
+<li>human/burningmetal: <b>1367.7</b></li>
+<li>human/defensive: <b>1365.0</b></li>
+<li>human/firestorm: <b>1364.8</b></li>
+<li>human/dawn2: <b>1362.2</b></li>
+<li>human/mercenary: <b>1361.5</b></li>
+<li>human/pdqscan: <b>1358.1</b></li>
+<li>human/lastjudgement: <b>1351.7</b></li>
+<li>human/rust: <b>1350.8</b></li>
+<li>human/snowscan: <b>1350.6</b></li>
+<li>human/frothandfizzle: <b>1346.6</b></li>
+<li>human/thefugitive: <b>1346.3</b></li>
+<li>human/blackknight: <b>1342.6</b></li>
+<li>human/sonofvain: <b>1340.3</b></li>
+<li>human/dawn: <b>1339.8</b></li>
+<li>human/goldeneye: <b>1335.4</b></li>
+<li>human/silking: <b>1332.1</b></li>
+<li>human/artofcorewar: <b>1331.9</b></li>
+<li>human/blowrag: <b>1329.2</b></li>
+<li>human/returnofthejedimp: <b>1326.9</b></li>
+<li>human/danceoffallenangels: <b>1324.6</b></li>
+<li>human/azathoth: <b>1320.9</b></li>
+<li>human/kosmos: <b>1319.4</b></li>
+<li>human/simplicity: <b>1314.0</b></li>
+<li>human/armadillo: <b>1313.3</b></li>
+<li>human/combatra: <b>1313.2</b></li>
+<li>human/cinammon: <b>1309.9</b></li>
+<li>human/returnofthependragon: <b>1306.9</b></li>
+<li>human/numb: <b>1305.0</b></li>
+<li>human/neith: <b>1304.3</b></li>
+<li>human/halcyon: <b>1303.2</b></li>
+<li>human/olivia: <b>1303.2</b></li>
+<li>human/reepicheep: <b>1301.3</b></li>
+<li>human/hullab3loo: <b>1301.0</b></li>
+<li>human/npaperii: <b>1300.7</b></li>
+<li>human/elvenking: <b>1298.3</b></li>
+<li>human/gargantuan: <b>1297.8</b></li>
+<li>human/mandragora: <b>1296.4</b></li>
+<li>human/safetyinnumbers: <b>1295.4</b></li>
+<li>human/hullabaloo: <b>1290.9</b></li>
+<li>human/eccentric: <b>1290.0</b></li>
+<li>human/thunderstrike: <b>1289.6</b></li>
+<li>human/impishv02: <b>1289.2</b></li>
+<li>human/ziggy: <b>1289.0</b></li>
+<li>human/stylizedeuphoria: <b>1288.7</b></li>
+<li>human/ironicimps: <b>1287.6</b></li>
+<li>human/gigolo: <b>1286.8</b></li>
+<li>human/gremlin: <b>1285.1</b></li>
+<li>human/borgir: <b>1283.6</b></li>
+<li>human/unrequitedlove: <b>1279.4</b></li>
+<li>human/themystery: <b>1278.0</b></li>
+<li>human/spiritualblackdimension: <b>1276.2</b></li>
+<li>human/recycledbits: <b>1273.1</b></li>
+<li>human/jade: <b>1272.7</b></li>
+<li>human/luca: <b>1268.9</b></li>
+<li>human/vain: <b>1268.8</b></li>
+<li>human/bitethebullet: <b>1268.3</b></li>
+<li>human/disharmonious: <b>1267.6</b></li>
+<li>human/uninvited: <b>1267.6</b></li>
+<li>human/revengeofthepapers: <b>1267.4</b></li>
+<li>human/bulldozed: <b>1265.7</b></li>
+<li>human/diehard: <b>1264.2</b></li>
+<li>human/nighttrain: <b>1263.0</b></li>
+<li>human/blacken: <b>1262.7</b></li>
+<li>human/sunset: <b>1261.6</b></li>
+<li>human/devilish202: <b>1261.4</b></li>
+<li>human/retroq: <b>1259.8</b></li>
+<li>human/evolcap66: <b>1259.3</b></li>
+<li>human/fixed: <b>1258.7</b></li>
+<li>human/nemesis: <b>1258.5</b></li>
+<li>human/ompega: <b>1258.2</b></li>
+<li>human/stormkeeper: <b>1256.1</b></li>
+<li>human/quicksilver: <b>1255.7</b></li>
+<li>human/slimetest: <b>1255.3</b></li>
+<li>human/rosebud: <b>1255.2</b></li>
+<li>human/bluecandle: <b>1253.0</b></li>
+<li>human/riseofthedragon: <b>1252.6</b></li>
+<li>human/kryptonite: <b>1250.0</b></li>
+<li>human/digitalis2003: <b>1245.4</b></li>
+<li>human/freighttrain: <b>1245.4</b></li>
+<li>human/electricrazor: <b>1244.8</b></li>
+<li>human/forgottenlore2: <b>1244.3</b></li>
+<li>human/timescape10: <b>1243.4</b></li>
+<li>human/revivalfire: <b>1240.3</b></li>
+<li>human/hellfire: <b>1239.7</b></li>
+<li>human/nightterrors: <b>1238.1</b></li>
+<li>human/thehistorian: <b>1236.9</b></li>
+<li>human/borg: <b>1236.7</b></li>
+<li>human/falconv03: <b>1236.2</b></li>
+<li>human/torment: <b>1234.1</b></li>
+<li>human/impfinityv4g1: <b>1232.7</b></li>
+<li>human/behemot: <b>1230.5</b></li>
+<li>human/returnofvanquisher: <b>1229.9</b></li>
+<li>human/forgottenlore: <b>1228.4</b></li>
+<li>human/sputnik: <b>1228.3</b></li>
+<li>human/unpitq: <b>1227.8</b></li>
+<li>human/vanquisher: <b>1227.7</b></li>
+<li>human/blade: <b>1227.2</b></li>
+<li>human/arrow: <b>1225.5</b></li>
+<li>human/electrichead: <b>1225.2</b></li>
+<li>human/lithobolia: <b>1224.1</b></li>
+<li>human/enigma: <b>1223.8</b></li>
+<li>human/valkyrie: <b>1223.5</b></li>
+<li>human/hazylazy: <b>1223.3</b></li>
+<li>human/shottonothing: <b>1222.1</b></li>
+<li>human/bigitalshot: <b>1221.9</b></li>
+<li>human/hazylazyc11: <b>1221.5</b></li>
+<li>human/alladinscave: <b>1220.8</b></li>
+<li>human/dust07: <b>1220.6</b></li>
+<li>human/unpit: <b>1219.5</b></li>
+<li>human/herbalavenger: <b>1219.3</b></li>
+<li>human/grendelsrevenge: <b>1218.8</b></li>
+<li>human/fireandice: <b>1218.5</b></li>
+<li>human/whitemist: <b>1218.3</b></li>
+<li>human/macromagic: <b>1218.0</b></li>
+<li>human/xenosmilus: <b>1217.3</b></li>
+<li>human/hector2: <b>1215.3</b></li>
+<li>human/oblivion: <b>1214.1</b></li>
+<li>human/bpanamax: <b>1213.9</b></li>
+<li>human/carmilla: <b>1213.4</b></li>
+<li>human/excalibur: <b>1213.3</b></li>
+<li>human/simple88v2: <b>1212.9</b></li>
+<li>human/kusanagi: <b>1212.8</b></li>
+<li>human/perseus: <b>1211.7</b></li>
+<li>human/barrage: <b>1211.1</b></li>
+<li>human/jackinthebox: <b>1210.4</b></li>
+<li>human/discord: <b>1209.7</b></li>
+<li>human/boysarebackintown: <b>1208.8</b></li>
+<li>human/nosferatu: <b>1208.1</b></li>
+<li>human/pendulum: <b>1207.4</b></li>
+<li>human/jinx: <b>1207.0</b></li>
+<li>human/vampsareback02: <b>1205.1</b></li>
+<li>human/zooom: <b>1204.8</b></li>
+<li>human/sprawlingchaos: <b>1204.7</b></li>
+<li>human/eternalexile: <b>1204.5</b></li>
+<li>human/bloodlust: <b>1204.1</b></li>
+<li>human/curseoftheundead: <b>1203.9</b></li>
+<li>human/recon2: <b>1201.0</b></li>
+<li>human/jackintheboxii: <b>1200.5</b></li>
+<li>human/blizzard: <b>1199.8</b></li>
+<li>human/hazyshadeii: <b>1199.0</b></li>
+<li>human/sneakyb2: <b>1198.8</b></li>
+<li>human/labomba: <b>1198.8</b></li>
+<li>human/bluefunk3: <b>1198.3</b></li>
+<li>human/lithium: <b>1197.8</b></li>
+<li>human/damageincorporated: <b>1197.6</b></li>
+<li>human/torcht18: <b>1197.0</b></li>
+<li>human/probe: <b>1196.3</b></li>
+<li>human/intotheunknown: <b>1195.6</b></li>
+<li>human/grilledoctopus05: <b>1194.4</b></li>
+<li>human/yogibear: <b>1193.5</b></li>
+<li>human/infiltrator: <b>1193.1</b></li>
+<li>human/myvamp54: <b>1192.5</b></li>
+<li>human/claw: <b>1192.4</b></li>
+<li>human/stoninc: <b>1192.2</b></li>
+<li>human/chameleon: <b>1191.7</b></li>
+<li>human/thenextstep88: <b>1191.3</b></li>
+<li>human/julietandpaper: <b>1190.4</b></li>
+<li>human/stalker: <b>1189.8</b></li>
+<li>human/zygote: <b>1189.7</b></li>
+<li>human/tnt: <b>1189.1</b></li>
+<li>human/bayonet: <b>1188.4</b></li>
+<li>human/mason20: <b>1185.1</b></li>
+<li>human/tornado30: <b>1184.8</b></li>
+<li>human/bluefunk: <b>1184.6</b></li>
+<li>human/myvamp37: <b>1184.3</b></li>
+<li>human/onebite: <b>1183.8</b></li>
+<li>human/icedragon: <b>1182.6</b></li>
+<li>human/win: <b>1181.2</b></li>
+<li>human/soldieroffortune: <b>1179.0</b></li>
+<li>human/mirage15: <b>1178.8</b></li>
+<li>human/mirage2: <b>1178.7</b></li>
+<li>human/nightofthelivingdead: <b>1178.7</b></li>
+<li>human/flurry: <b>1177.2</b></li>
+<li>human/blur2: <b>1176.4</b></li>
+<li>human/blur: <b>1175.3</b></li>
+<li>human/thermiteii: <b>1175.2</b></li>
+<li>human/gemoftheocean: <b>1173.9</b></li>
+<li>human/replicant: <b>1172.5</b></li>
+<li>human/vamp02b: <b>1171.2</b></li>
+<li>human/aeka: <b>1170.6</b></li>
+<li>human/quiz: <b>1167.8</b></li>
+<li>human/gothik: <b>1164.0</b></li>
+<li>human/evoltmp88: <b>1162.1</b></li>
+<li>human/twister: <b>1161.1</b></li>
+<li>human/agonyii: <b>1158.8</b></li>
+<li>human/steppingstone: <b>1157.2</b></li>
+<li>human/abomination: <b>1155.6</b></li>
+<li>human/phq: <b>1155.3</b></li>
+<li>human/beholderseye17: <b>1150.3</b></li>
+<li>human/armorya5: <b>1149.9</b></li>
+<li>human/foggyswamp: <b>1149.9</b></li>
+<li>human/elementaldust2: <b>1149.5</b></li>
+<li>human/heremscimitar: <b>1149.2</b></li>
+<li>human/pacman: <b>1148.8</b></li>
+<li>human/leviathan: <b>1146.3</b></li>
+<li>human/chimerav35: <b>1146.0</b></li>
+<li>human/leapfrog: <b>1144.4</b></li>
+<li>human/snake: <b>1143.9</b></li>
+<li>human/irongate: <b>1141.6</b></li>
+<li>human/fatexpansionv: <b>1138.7</b></li>
+<li>human/seventyfive: <b>1137.6</b></li>
+<li>human/kitchensinkii: <b>1136.9</b></li>
+<li>human/cannonade: <b>1133.5</b></li>
+<li>human/lucky3: <b>1133.3</b></li>
+<li>human/winterwerewolf3: <b>1133.0</b></li>
+<li>human/blur88: <b>1132.1</b></li>
+<li>human/leprechaunonspeed: <b>1130.5</b></li>
+<li>human/stasis: <b>1130.1</b></li>
+<li>human/agony51: <b>1128.4</b></li>
+<li>human/ttti: <b>1127.0</b></li>
+<li>human/thermite10: <b>1124.5</b></li>
+<li>human/capskeyisstuck: <b>1124.2</b></li>
+<li>human/sj4a: <b>1123.4</b></li>
+<li>human/medusasv7x: <b>1122.7</b></li>
+<li>human/ncdecoy: <b>1122.2</b></li>
+<li>human/agony31: <b>1122.2</b></li>
+<li>human/hordesofmicrowarriors: <b>1121.1</b></li>
+<li>human/sphinxv28: <b>1118.6</b></li>
+<li>human/rave: <b>1115.5</b></li>
+<li>human/keystonet13: <b>1113.6</b></li>
+<li>human/charonv81: <b>1113.2</b></li>
+<li>human/leprechaun1b: <b>1106.0</b></li>
+<li>human/nomuckingabout: <b>1096.6</b></li>
+<li>human/charonv70: <b>1095.4</b></li>
+<li>human/bscannersliveinvain: <b>1094.9</b></li>
+<li>human/crimp2: <b>1092.1</b></li>
+<li>human/crimp: <b>1090.7</b></li>
+<li>human/killerinstinct: <b>1088.4</b></li>
+<li>human/imprimis6: <b>1084.4</b></li>
+<li>human/griffin2: <b>1083.7</b></li>
+<li>human/requestv20: <b>1076.7</b></li>
+<li>human/impurge: <b>1067.2</b></li>
+<li>human/backstabber: <b>1066.2</b></li>
+<li>human/0stormbringer: <b>1065.0</b></li>
+<li>human/twilightpitsv60: <b>1060.2</b></li>
+<li>human/fastfoodv21: <b>1056.8</b></li>
+<li>human/flashpaper: <b>1046.7</b></li>
+<li>human/flashpaper37: <b>1045.9</b></li>
+<li>human/gammapaper30: <b>1045.4</b></li>
+<li>human/flypaper30: <b>1040.7</b></li>
+<li>human/hydra: <b>1026.4</b></li>
+<li>human/precipice: <b>1025.0</b></li>
+<li>human/trinity: <b>1022.7</b></li>
+<li>human/paratroopsv21: <b>1017.9</b></li>
+<li>human/genocide: <b>1015.6</b></li>
+<li>human/vagabond: <b>1001.0</b></li>
+<li>human/notepaper: <b>967.6</b></li>
+<li>human/returnofthelivingdead: <b>955.5</b></li>
+<li>human/smoothnoodlemap6: <b>909.9</b></li>
+<li>human/smoothnoodlemap: <b>887.8</b></li>
+<li>human/dwarf: <b>864.3</b></li>
+<li>human/validate: <b>344.1</b></li>
+<li>human/pspace: <b>-889.5</b></li>
+</ol>
+
+</details>
+
+<p><strong>Run it yourself.</strong> <a href="https://docs.codeclash.ai/quickstart/#installation">Set up CodeClash</a> and send a model up the ladder with:</p>
+<pre class="prettyprint lang-bash">
+uv run codeclash ladder run configs/ablations/ladder/corewar.yaml
+</pre>
+
+<hr />
+<h3>References</h3>
+<ul>
+<li><a href="https://corewar.co.uk/index.htm">Core War Official Documentation</a></li>
+<li><a href="https://github.com/CodeClash-ai/CoreWar">CodeClash GitHub Repository</a></li>
+</ul>
+<p>If you evaluate on Core War using CodeClash, in addition to our work, we recommend the following citation for attribution to the original creators:</p>
+<pre>
+@misc{corewar1984,
+    title={Core Wars Guidelines},
+    author={Jones, D.G. and Dewdney, A.K.},
+    url={https://corewar.co.uk/standards/cwg.txt},
+    year={1984},
+}
+</pre>
+</div>
+
+
+    <!-- Lightbox for images -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script>
+        // Theme toggle functionality
+        (function () {
+            var root = document.documentElement;
+            var btn = document.getElementById('theme-toggle');
+            var media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+            function readStored() {
+                try { return localStorage.getItem('theme'); } catch (e) { return null; }
+            }
+            function writeStored(theme) {
+                try { localStorage.setItem('theme', theme); } catch (e) {}
+            }
+            function effectiveTheme() {
+                var stored = readStored();
+                if (stored === 'dark' || stored === 'light') return stored;
+                return (media && media.matches) ? 'dark' : 'light';
+            }
+            function apply(theme) {
+                root.setAttribute('data-theme', theme);
+                updateLabel();
+            }
+            function updateLabel() {
+                var theme = effectiveTheme();
+                if (!btn) return;
+                // Don't set textContent - we're using SVG icons now
+                btn.title = 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode';
+                btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+            }
+            function toggle() {
+                var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+                apply(next);
+                writeStored(next);
+            }
+            if (btn) btn.addEventListener('click', toggle);
+            if (media && media.addEventListener) media.addEventListener('change', function () {
+                if (readStored() == null) apply(effectiveTheme()); else updateLabel();
+            });
+            apply(effectiveTheme());
+        })();
+
+        // Image lightbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+            
+            // Add click handler to all img-insight images
+            document.querySelectorAll('.img-insight').forEach(img => {
+                img.addEventListener('click', function() {
+                    lightbox.classList.add('active');
+                    lightboxImg.src = this.src;
+                    lightboxImg.alt = this.alt;
+                });
+            });
+            
+            // Close lightbox when clicking close button
+            closeBtn.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+            
+            // Close lightbox with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    
+    <!-- Custom JavaScript will go here -->
+    
+</body>
+</html>

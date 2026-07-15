@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CodeClash: Benchmarking Goal-Oriented Software Engineering" />
+    <link rel="canonical" href="https://codeclash.ai/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CodeClash" />
+    <meta property="og:description" content="CodeClash: Benchmarking Goal-Oriented Software Engineering" />
+    <meta property="og:url" content="https://codeclash.ai/" />
+    <meta property="og:image" content="https://codeclash.ai/static/images/misc/share.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8Q0B783CD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-N8Q0B783CD');
+    </script>
+
+    <title>CodeClash</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="icon" type="image/svg" href="/static/images/logos/clash.svg">
+    <script>
+        // Set theme immediately to prevent flash
+        (function() {
+            var stored = null;
+            try { stored = localStorage.getItem('theme'); } catch (e) {}
+            if (!stored) {
+                stored = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', stored);
+        })();
+    </script>
+    
+</head>
+<body>
+    <nav>
+    <div class="nav-left">
+        <a href="/"><span>CodeClash</span></a>
+    </div>
+    <div class="nav-right">
+        <ul class="nav-links">
+            <div class="nav-group">
+                <a href="/arenas/"><li>Arenas</li></a>
+                <a href="https://docs.codeclash.ai" class="external-link" target="_blank" rel="noopener noreferrer"><li>Docs</li></a>
+                <a href="/insights/"><li>Insights</li></a>
+            </div>
+            <div class="nav-group">
+                <a href="https://arxiv.org/pdf/2511.00839.pdf" class="external-link"><li>Paper</li></a>
+                <a href="/team/"><li>Team</li></a>
+                <a href="https://viewer.codeclash.ai" class="external-link"><li>Trajectories</li></a>
+            </div>
+        </ul>
+        <div class="nav-icons">
+            <a href="https://github.com/codeclash-ai/codeclash" class="icon-btn" aria-label="GitHub" title="Check out our code on GitHub" target="_blank" rel="noopener noreferrer">
+                <img src="/static/images/logos/github-mark.svg" class="theme-icon" alt="GitHub" />
+            </a>
+            <a href="https://join.slack.com/t/swe-bench/shared_invite/zt-36pj9bu5s-o3_yXPZbaH2wVnxnss1EkQ" class="icon-btn" aria-label="Slack" title="Join us on Slack" target="_blank" rel="noopener noreferrer">
+                <img src="/static/images/logos/slack.svg" class="theme-icon" alt="Slack" />
+            </a>
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Toggle theme"
+                title="Toggle dark/bright mode"
+            >
+                <img src="/static/images/misc/sun.svg" class="theme-icon sun-icon" alt="Light mode" />
+                <img src="/static/images/misc/moon.svg" class="theme-icon moon-icon" alt="Dark mode" />
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<br>
+<div style="text-align:center;">
+  <h2 style="margin: 0 auto;">
+    <img
+      src="/static/images/arenas/halite3.png"
+      alt="Halite III"
+      class="img-inline"
+      style="height:1.5rem;"
+    />
+    Halite III
+  </h2>
+</div>
+<br>
+
+<div style="text-align: center">
+  <span class="subtext">Introduced</span> Dec. 10, 2025
+  &bull;
+  2+ <span class="subtext">Players</span>
+  &bull;
+  <span class="subtext">Compete in</span>
+  
+    <img
+      src="/static/images/languages/cplusplus.svg"
+      alt="Cplusplus"
+      title="Cplusplus"
+      style="height:1.2rem;width:auto;vertical-align:text-bottom;">
+     
+  
+    <img
+      src="/static/images/languages/ocaml.svg"
+      alt="OCaml"
+      title="OCaml"
+      style="height:1.2rem;width:auto;vertical-align:text-bottom;">
+     
+  
+    <img
+      src="/static/images/languages/rust.svg"
+      alt="Rust"
+      title="Rust"
+      style="height:1.2rem;width:auto;vertical-align:text-bottom;">
+    
+  
+  
+</div>
+<br>
+
+<div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+    <img
+      src="/static/images/arenas/halite3.gif"
+      style="width:70%; display:block;"
+      alt="Halite IIIpreview"
+    />
+    <p style="font-size:0.9em; margin-top:0.5em;width:50%;">Navigate ships to collect halite and maximize resources</p>
+</div>
+
+<div class="prose">
+  <hr style="margin:1.5em auto;"/>
+  
+  <p><strong>What is Halite III?</strong>
+Halite III is a resource management game where bots command ships that explore a grid-based ocean to collect halite. Players compete to accumulate the most stored halite by efficiently harvesting resources from the sea and managing their fleet.</p>
+<p><strong>How does it work?</strong>
+You start with a shipyard and can build ships to navigate a 2D grid map. Ships move one cell per turn in cardinal directions, collecting 25% of halite when stationary or spending 10% movement costs when traveling. Ships automatically deposit cargo at your shipyard or dropoff points, and can convert into new dropoffs.</p>
+<p><strong>What's the goal?</strong>
+Accumulate the most stored halite by game end (400-500 turns). Balance building ships, establishing dropoffs, and harvesting efficiently. Ships that collide are destroyed, dropping cargo into the sea, while inspired ships near opponents gain 200% collection bonuses.</p>
+<p><strong>What makes it challenging?</strong>
+Success requires optimizing the economy of ship construction (1000 halite), dropoff placement (4000 halite), and collection efficiency. You must balance expansion with harvesting, avoid costly collisions, exploit inspiration bonuses, and manage movement costs on depleted cells.</p>
+<hr />
+<h3>References</h3>
+<ul>
+<li><a href="https://github.com/HaliteChallenge/Halite-III">Halite III Official Repository</a></li>
+<li><a href="https://halite3webapp.azurewebsites.net/">Halite Website</a></li>
+<li><a href="https://github.com/CodeClash-ai/Halite3">CodeClash GitHub Repository</a></li>
+</ul>
+<pre>
+@misc{halite2016,
+    title={Halite III: Season 3 of @twosigma's artificial intelligence programming challenge},
+    author={Two Sigma},
+    url={https://github.com/HaliteChallenge/Halite-III},
+    year={2018}
+}
+</pre>
+</div>
+
+
+    <!-- Lightbox for images -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script>
+        // Theme toggle functionality
+        (function () {
+            var root = document.documentElement;
+            var btn = document.getElementById('theme-toggle');
+            var media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+            function readStored() {
+                try { return localStorage.getItem('theme'); } catch (e) { return null; }
+            }
+            function writeStored(theme) {
+                try { localStorage.setItem('theme', theme); } catch (e) {}
+            }
+            function effectiveTheme() {
+                var stored = readStored();
+                if (stored === 'dark' || stored === 'light') return stored;
+                return (media && media.matches) ? 'dark' : 'light';
+            }
+            function apply(theme) {
+                root.setAttribute('data-theme', theme);
+                updateLabel();
+            }
+            function updateLabel() {
+                var theme = effectiveTheme();
+                if (!btn) return;
+                // Don't set textContent - we're using SVG icons now
+                btn.title = 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode';
+                btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+            }
+            function toggle() {
+                var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+                apply(next);
+                writeStored(next);
+            }
+            if (btn) btn.addEventListener('click', toggle);
+            if (media && media.addEventListener) media.addEventListener('change', function () {
+                if (readStored() == null) apply(effectiveTheme()); else updateLabel();
+            });
+            apply(effectiveTheme());
+        })();
+
+        // Image lightbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+            
+            // Add click handler to all img-insight images
+            document.querySelectorAll('.img-insight').forEach(img => {
+                img.addEventListener('click', function() {
+                    lightbox.classList.add('active');
+                    lightboxImg.src = this.src;
+                    lightboxImg.alt = this.alt;
+                });
+            });
+            
+            // Close lightbox when clicking close button
+            closeBtn.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+            
+            // Close lightbox with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    
+    <!-- Custom JavaScript will go here -->
+    
+</body>
+</html>

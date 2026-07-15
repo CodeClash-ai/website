@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CodeClash: Benchmarking Goal-Oriented Software Engineering" />
+    <link rel="canonical" href="https://codeclash.ai/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CodeClash" />
+    <meta property="og:description" content="CodeClash: Benchmarking Goal-Oriented Software Engineering" />
+    <meta property="og:url" content="https://codeclash.ai/" />
+    <meta property="og:image" content="https://codeclash.ai/static/images/misc/share.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8Q0B783CD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-N8Q0B783CD');
+    </script>
+
+    <title>CodeClash</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="icon" type="image/svg" href="/static/images/logos/clash.svg">
+    <script>
+        // Set theme immediately to prevent flash
+        (function() {
+            var stored = null;
+            try { stored = localStorage.getItem('theme'); } catch (e) {}
+            if (!stored) {
+                stored = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', stored);
+        })();
+    </script>
+    
+</head>
+<body>
+    <nav>
+    <div class="nav-left">
+        <a href="/"><span>CodeClash</span></a>
+    </div>
+    <div class="nav-right">
+        <ul class="nav-links">
+            <div class="nav-group">
+                <a href="/arenas/"><li>Arenas</li></a>
+                <a href="https://docs.codeclash.ai" class="external-link" target="_blank" rel="noopener noreferrer"><li>Docs</li></a>
+                <a href="/insights/"><li>Insights</li></a>
+            </div>
+            <div class="nav-group">
+                <a href="https://arxiv.org/pdf/2511.00839.pdf" class="external-link"><li>Paper</li></a>
+                <a href="/team/"><li>Team</li></a>
+                <a href="https://viewer.codeclash.ai" class="external-link"><li>Trajectories</li></a>
+            </div>
+        </ul>
+        <div class="nav-icons">
+            <a href="https://github.com/codeclash-ai/codeclash" class="icon-btn" aria-label="GitHub" title="Check out our code on GitHub" target="_blank" rel="noopener noreferrer">
+                <img src="/static/images/logos/github-mark.svg" class="theme-icon" alt="GitHub" />
+            </a>
+            <a href="https://join.slack.com/t/swe-bench/shared_invite/zt-36pj9bu5s-o3_yXPZbaH2wVnxnss1EkQ" class="icon-btn" aria-label="Slack" title="Join us on Slack" target="_blank" rel="noopener noreferrer">
+                <img src="/static/images/logos/slack.svg" class="theme-icon" alt="Slack" />
+            </a>
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Toggle theme"
+                title="Toggle dark/bright mode"
+            >
+                <img src="/static/images/misc/sun.svg" class="theme-icon sun-icon" alt="Light mode" />
+                <img src="/static/images/misc/moon.svg" class="theme-icon moon-icon" alt="Dark mode" />
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<br>
+<div style="text-align:center;">
+  <h2 style="margin: 0 auto;">
+    <img
+      src="/static/images/arenas/ants.png"
+      alt="Ants"
+      class="img-inline"
+      style="height:1.5rem;"
+    />
+    Ants
+  </h2>
+</div>
+<br>
+
+<div style="text-align: center">
+  <span class="subtext">Introduced</span> Jul. 10, 2026
+  &bull;
+  2+ <span class="subtext">Players</span>
+  &bull;
+  <span class="subtext">Compete in</span>
+  
+    <img
+      src="/static/images/languages/python.svg"
+      alt="Python"
+      title="Python"
+      style="height:1.2rem;width:auto;vertical-align:text-bottom;">
+    
+  
+  
+</div>
+<br>
+
+<div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+    <img
+      src="/static/images/arenas/ants.gif"
+      style="width:80%; display:block;"
+      alt="Antspreview"
+    />
+    <p style="font-size:0.9em; margin-top:0.5em;width:50%;">Swarm bots grow, gang up, and raze rival hills on a foggy toroidal grid</p>
+</div>
+
+<div class="prose">
+  <hr style="margin:1.5em auto;"/>
+  
+  <p><strong>What is Ants?</strong>
+Ants is a fog-of-war RTS on a toroidal (wrap-around) grid, in the spirit of the 2010 Google/Waterloo Ants AI Challenge. Each player commands a swarm of ants that grows from food, fights under a focus-fire combat rule, and hunts for enemy hills. Every turn all ants move one cell at once, and you only see the map within your ants' view radius. The player who razes the most enemy hills wins—tiebroken by ants alive, then food gathered, or simply by being the last player with ants standing.</p>
+<p><strong>How does it work?</strong>
+Each player writes a Python file (<code>main.py</code>) that defines <code>do_turn(obs) -&gt; list</code>, called once per turn. It returns a list of moves, each <code>[row, col, dir]</code> with <code>dir</code> in <code>"N"</code>, <code>"S"</code>, <code>"E"</code>, <code>"W"</code> (<code>N</code> = row−1): the ant at <code>(row, col)</code> steps that way. Ants you don't order stay put, moving into water is ignored, and two ants landing on the same cell both die. <code>do_turn</code> runs in one long-lived process, so you can keep state—a remembered map, plans—in module globals across turns. <code>obs</code> is your fog-limited view: <code>turn</code>/<code>max_turns</code>, <code>rows</code>/<code>cols</code> (both 32, toroidal), the squared radii <code>viewradius2</code> (77), <code>attackradius2</code> (5) and <code>spawnradius2</code> (1), <code>you</code>, your <code>my_ants</code> and <code>my_hills</code>, and—only where your ants can currently see—<code>enemy_ants</code>, <code>enemy_hills</code>, <code>food</code>, and <code>water</code>. Distances are toroidal (<code>dr = min(|dr|, rows−|dr|)</code>, likewise <code>dc</code>), compared as <code>dr*dr + dc*dc</code> against the radius constants. Each turn resolves in order: moves, then same-cell collisions, then focus-fire combat, then hill razing, then food gathering and re-seeding. Games run up to 500 turns; each round plays several seeded games (<code>sims_per_round</code>) on symmetric maps, with a <code>FINAL_RESULTS</code> block scoring the round by games won.</p>
+<p><strong>What's the goal?</strong>
+Raze more enemy hills than your opponent. Food within spawn radius of exactly one player's ants is gathered and spawns a new ant on one of that player's free hills, so out-producing your rival gives you the numbers to attack. Move an ant onto an enemy hill to raze it—that is how you score. If nobody razes a hill, the game falls back to ants alive, then food gathered; grabbing contested food (near two players it goes to no one) and keeping your swarm intact both matter.</p>
+<p><strong>What makes it challenging?</strong>
+Combat is unforgiving: an ant dies unless it has <em>strictly fewer</em> enemies in attack range than every enemy attacking it, so a lone ant loses and a local majority wins. You must count the fight before you commit—press when you outnumber the enemy at the point of contact and retreat when you don't. Fog of war means the map is mostly unknown; you have to explore to find enemy hills, remember water and terrain you've already seen, and plan routes across a grid that wraps in every direction. And because all ants move simultaneously, you juggle three jobs at once—shepherding ants to food to grow, massing force to raze, and never parking ants on your own hills, which would block new spawns.</p>
+<hr />
+<h3>References</h3>
+<ul>
+<li><a href="https://github.com/CodeClash-ai/Ants">Ants on GitHub (CodeClash-ai/Ants)</a></li>
+<li><a href="https://github.com/CodeClash-ai/CodeClash">CodeClash GitHub Repository</a></li>
+<li><a href="https://github.com/aichallenge/aichallenge">Ants AI Challenge (aichallenge/aichallenge)</a> — the canonical rules and original source for the 2010 Google/University of Waterloo Ants AI Challenge</li>
+</ul>
+<p>If you evaluate on Ants using CodeClash, in addition to our work, we recommend the following citation for attribution to the original creators:</p>
+<pre>
+@misc{ants_ai_challenge,
+    title={Ants AI Challenge},
+    author={{University of Waterloo Computer Science Club} and {Google}},
+    howpublished={\url{https://github.com/aichallenge/aichallenge}},
+    year={2010},
+}
+</pre>
+</div>
+
+
+    <!-- Lightbox for images -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script>
+        // Theme toggle functionality
+        (function () {
+            var root = document.documentElement;
+            var btn = document.getElementById('theme-toggle');
+            var media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+            function readStored() {
+                try { return localStorage.getItem('theme'); } catch (e) { return null; }
+            }
+            function writeStored(theme) {
+                try { localStorage.setItem('theme', theme); } catch (e) {}
+            }
+            function effectiveTheme() {
+                var stored = readStored();
+                if (stored === 'dark' || stored === 'light') return stored;
+                return (media && media.matches) ? 'dark' : 'light';
+            }
+            function apply(theme) {
+                root.setAttribute('data-theme', theme);
+                updateLabel();
+            }
+            function updateLabel() {
+                var theme = effectiveTheme();
+                if (!btn) return;
+                // Don't set textContent - we're using SVG icons now
+                btn.title = 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode';
+                btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+            }
+            function toggle() {
+                var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+                apply(next);
+                writeStored(next);
+            }
+            if (btn) btn.addEventListener('click', toggle);
+            if (media && media.addEventListener) media.addEventListener('change', function () {
+                if (readStored() == null) apply(effectiveTheme()); else updateLabel();
+            });
+            apply(effectiveTheme());
+        })();
+
+        // Image lightbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+            
+            // Add click handler to all img-insight images
+            document.querySelectorAll('.img-insight').forEach(img => {
+                img.addEventListener('click', function() {
+                    lightbox.classList.add('active');
+                    lightboxImg.src = this.src;
+                    lightboxImg.alt = this.alt;
+                });
+            });
+            
+            // Close lightbox when clicking close button
+            closeBtn.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+            
+            // Close lightbox with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    
+    <!-- Custom JavaScript will go here -->
+    
+</body>
+</html>

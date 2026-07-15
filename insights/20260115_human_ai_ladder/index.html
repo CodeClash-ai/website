@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CodeClash: Benchmarking Goal-Oriented Software Engineering" />
+    <link rel="canonical" href="https://codeclash.ai/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CodeClash" />
+    <meta property="og:description" content="CodeClash: Benchmarking Goal-Oriented Software Engineering" />
+    <meta property="og:url" content="https://codeclash.ai/" />
+    <meta property="og:image" content="https://codeclash.ai/static/images/misc/share.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8Q0B783CD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-N8Q0B783CD');
+    </script>
+
+    <title>CodeClash</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="icon" type="image/svg" href="/static/images/logos/clash.svg">
+    <script>
+        // Set theme immediately to prevent flash
+        (function() {
+            var stored = null;
+            try { stored = localStorage.getItem('theme'); } catch (e) {}
+            if (!stored) {
+                stored = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', stored);
+        })();
+    </script>
+    
+</head>
+<body>
+    <nav>
+    <div class="nav-left">
+        <a href="/"><span>CodeClash</span></a>
+    </div>
+    <div class="nav-right">
+        <ul class="nav-links">
+            <div class="nav-group">
+                <a href="/arenas/"><li>Arenas</li></a>
+                <a href="https://docs.codeclash.ai" class="external-link" target="_blank" rel="noopener noreferrer"><li>Docs</li></a>
+                <a href="/insights/"><li>Insights</li></a>
+            </div>
+            <div class="nav-group">
+                <a href="https://arxiv.org/pdf/2511.00839.pdf" class="external-link"><li>Paper</li></a>
+                <a href="/team/"><li>Team</li></a>
+                <a href="https://viewer.codeclash.ai" class="external-link"><li>Trajectories</li></a>
+            </div>
+        </ul>
+        <div class="nav-icons">
+            <a href="https://github.com/codeclash-ai/codeclash" class="icon-btn" aria-label="GitHub" title="Check out our code on GitHub" target="_blank" rel="noopener noreferrer">
+                <img src="/static/images/logos/github-mark.svg" class="theme-icon" alt="GitHub" />
+            </a>
+            <a href="https://join.slack.com/t/swe-bench/shared_invite/zt-36pj9bu5s-o3_yXPZbaH2wVnxnss1EkQ" class="icon-btn" aria-label="Slack" title="Join us on Slack" target="_blank" rel="noopener noreferrer">
+                <img src="/static/images/logos/slack.svg" class="theme-icon" alt="Slack" />
+            </a>
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Toggle theme"
+                title="Toggle dark/bright mode"
+            >
+                <img src="/static/images/misc/sun.svg" class="theme-icon sun-icon" alt="Light mode" />
+                <img src="/static/images/misc/moon.svg" class="theme-icon moon-icon" alt="Dark mode" />
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<br>
+<div style="text-align:center;">
+  <h2>Humans &amp; AI [Ep. 2] - Introducing CC:Ladder</h2>
+  <p class="subtext">Where does AI rank among public solutions by human programmers?</p>
+  <span>
+  Jan. 15, 2026 &bull;
+  
+    by 
+    
+    
+      <a href="https://john-b-yang.github.io/">John Yang</a>
+    
+  
+  </span>
+</div>
+<br>
+<hr />
+
+<div class="prose">
+  <p><strong>tl;dr</strong> We introduce boss battles as a new format for evaluating LMs' coding + reasoning capabilities.</p>
+<p>We pit <a href="/insights/20251105_human_ai/">Claude 4.5 Sonnet against <img src="/static/images/insights/20251108_human_ai/gigachad.jpg" class="img-inline" style="height:1.2rem;margin-right:0em;" /> GigaChad</a> in <a href="/arenas/robotrumble">RobotRumble</a> and found that today's best coding models still struggle heavily to develop suboptimal codebases into ones that rival the best human written solutions.</p>
+<p>Inspired by this finding, we introduce <strong>CC:Ladder</strong>, a twist that makes evaluating LMs as competitive, long-horizon software developers <strong>hill-climable</strong> and <strong>cheaper</strong>.</p>
+<h2>How it works</h2>
+<p>In <strong>CC:Ladder</strong>, models begin against the weakest human solution and must win a majority of <code>n</code> rounds to advance to increasingly stronger opponents; evaluation is determined by the highest-ranked opponent defeated.</p>
+<p><img src="/static/images/insights/20260116_human_ai_ladder/cc_ladder.png" class="img-insight" /></p>
+<p>Some key details:</p>
+<ul>
+<li>Models start with a codebase containing the weakest opponent's solution.</li>
+<li>Models play <code>n</code> rounds against an opponent, where <strong><code>n &gt;= 3</code></strong> and <strong><code>n</code> is odd</strong>.</li>
+<li>A model "advances" to the next opponent if it <strong>wins <code>(n+1)/2</code> rounds</strong> <em>and</em> it <strong>wins the last round</strong>.</li>
+<li>If a model advances, <strong>its codebase carries over</strong>. In other words, a model's codebase at the start of round 0 against opponent rank 60 is the same as the codebase at the end of round 5 against opponent rank 61. The model's codebase does <em>not</em> get reset to the initial state.</li>
+</ul>
+<p><strong>CC:Ladder</strong> has several advantages over the default Elo leaderboard.</p>
+<ul>
+<li><strong>Hill-climable</strong>: See how far up the rankings a model can go. Better models achieve higher rankings.</li>
+<li><strong>Cheaper</strong>: The model competes against static human solutions. No need to spend $$ to run another LM as an opponent.</li>
+<li><strong>Less noise</strong>: Again, because the opponent is a static human solution.</li>
+<li><strong>Long Horizon</strong>: To beat the ladder, models must play <code>m opponents * n rounds per opponent</code>, where <code>m=58</code> for RobotRumble and <code>m=264</code> for Core War.</li>
+</ul>
+<h2>Building CC:Ladder</h2>
+<p>Putting together a ladder for a CodeClash arena is entirely dependent on how many open source, human written solutions are available on the web.</p>
+<ul>
+<li>For RobotRumble, we found 58 open source implementations on the <a href="https://robotrumble.org/boards/2/robots">public leaderboard</a></li>
+<li>For Core War, we found 264 open source implementations by manually crawling the Core War online <a href="http://www.koth.org/planar/by-name/complete.htm">directory</a>.</li>
+<li>For BattleSnake, we found 50 open source implementations with reliable game servers.</li>
+</ul>
+<p>Given a solution, we (1) check that the solution compiles and runs properly, then (2) push the solution as a branch (named <code>human/&lt;name&gt;</code> or <code>human/&lt;author&gt;/&lt;name&gt;</code>) to the corresponding repository (branches for <a href="https://github.com/CodeClash-ai/CoreWar/branches">Core War</a>, <a href="https://github.com/CodeClash-ai/RobotRumble/branches">RobotRumble</a>, <a href="https://github.com/CodeClash-ai/BattleSnake/branches">BattleSnake</a>).</p>
+<p>We currently execute this workflow manually.
+Ping us in <a href="https://join.slack.com/t/swe-bench/shared_invite/zt-36pj9bu5s-o3_yXPZbaH2wVnxnss1EkQ">Slack</a> if you'd be interested in automating this process or putting together a new ladder for a different arena!</p>
+<h2>Initial Findings</h2>
+<h3>Part 1: Ranking human-written solutions</h3>
+<p>Given <code>n</code> solutions, we make every unique pair of solutions compete <code>t</code> times.</p>
+<ul>
+<li><code>t=250</code> for RobotRumble</li>
+<li><code>t=4000</code> for Core War</li>
+</ul>
+<p><code>t</code> varies solely due to compute constraints.
+Core War simulations run more quickly than RobotRumble simulations.</p>
+<p>Then, we compute each solution's Elo and determine the rankings.
+Elo ratings are computed by fitting a Bradley-Terry model to the pairwise win matrix via maximum likelihood estimation with L2 regularization.
+We set the regularization strength to 0.01 and use a base Elo of 1200 with a slope of 400 to convert log-odds strengths to interpretable ratings.</p>
+<p>We host the ranked human solutions — along with the full Elo tables — on each arena's own page. Head there for the complete rankings:</p>
+<ul>
+<li><strong><a href="/arenas/corewar#cc-ladder">Core War</a></strong> — 264 human warriors (<code>t=4000</code>)</li>
+<li><strong><a href="/arenas/robotrumble#cc-ladder">RobotRumble</a></strong> — 58 human robots (<code>t=250</code>)</li>
+<li><strong><a href="/arenas/battlesnake#cc-ladder">BattleSnake</a></strong> — 50 human snakes (<code>t=250</code>)</li>
+</ul>
+<h3>Part 2: How high do current models climb?</h3>
+<p>On Core War</p>
+<ul>
+<li><img src="/static/images/orgs/anthropic.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Claude Opus 4.5 reaches <em>[coming soon]</em></li>
+<li><img src="/static/images/orgs/openai.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> GPT 5.2 (medium thinking) reaches <em>[coming soon]</em></li>
+<li><img src="/static/images/orgs/google.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Gemini 3 Pro reaches <em>[coming soon]</em></li>
+</ul>
+<p>On RobotRumble</p>
+<ul>
+<li><img src="/static/images/orgs/anthropic.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Claude Opus 4.5 reaches <em>[coming soon]</em></li>
+<li><img src="/static/images/orgs/openai.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> GPT 5.2 (medium thinking) reaches <em>[coming soon]</em></li>
+<li><img src="/static/images/orgs/google.svg" class="img-inline" style="height:1rem;margin-right:0em;"/> Gemini 3 Pro reaches <em>[coming soon]</em></li>
+</ul>
+<h2>How to run?</h2>
+<p>Run your model against <strong>CC:Ladder</strong> today.
+<a href="https://docs.codeclash.ai/quickstart/#installation">Set up CodeClash</a> and run <code>uv run python ladder.py configs/ladder/&lt;arena&gt;.yaml</code>, where <code>&lt;arena&gt;.yaml</code> specifies (using Core War as the example arena):</p>
+<pre class="prettyprint lang-yaml">
+tournament:
+  rounds: 5 # Number of rounds model players each opponent
+game:
+  name: CoreWar
+  sims_per_round: 1000
+  args: {}
+player:
+  agent: mini
+  name: claude-sonnet-4-5-20250929
+  config:
+    agent: !include mini/default.yaml
+    model:
+      model_name: '@anthropic/claude-sonnet-4-5-20250929'
+      model_kwargs:
+        temperature: 0.2
+        max_tokens: 4096
+</pre>
+
+<h2>Relationship between CC:Ladder &amp; CodeClash</h2>
+<p>For Pokémon fans, <strong>CC:Ladder</strong> is the equivalent of the <a href="https://pokemon.fandom.com/wiki/Elite_Four">Elite 4</a> battles (and for the real aficionados, <strong>CC:Ladder</strong> is inspired heavily by the <a href="https://bulbapedia.bulbagarden.net/wiki/Trainer_Tower">Trainer Tower</a>).
+CodeClash is the real world <a href="https://en.wikipedia.org/wiki/Pok%C3%A9mon_World_Championships">Video Game Championships</a>, where individuals compete against other humans (<em>not</em> a static bot).</p>
+<p><img src="/static/images/insights/20260116_human_ai_ladder/elite4firered.png" class="img-insight" /></p>
+<div style="text-align:center;font-size:0.9em;">
+As with the Elite Four, <b>CC:Ladder</b> tests progression against fixed opponents, whereas CodeClash reflects real competition by measuring performance against intelligent competitors.
+</div>
+
+<p>We recommend CC:Ladder be treated as a proper evaluation as well.
+Similar to how SWE-bench Lite and Verified were created as easier subsets of SWE-bench, we think </p>
+<p>CodeClash remains the north-star evaluation.
+Competition against dynamic, intelligent competition is more challenging than static solutions.
+However, given the rather dismal current state of models' ability to code against smart rivals across a long horizon, we introduce <strong>CC:Ladder</strong> as a stepping stone towards such capabilities.</p>
+</div>
+
+
+    <!-- Lightbox for images -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script>
+        // Theme toggle functionality
+        (function () {
+            var root = document.documentElement;
+            var btn = document.getElementById('theme-toggle');
+            var media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+            function readStored() {
+                try { return localStorage.getItem('theme'); } catch (e) { return null; }
+            }
+            function writeStored(theme) {
+                try { localStorage.setItem('theme', theme); } catch (e) {}
+            }
+            function effectiveTheme() {
+                var stored = readStored();
+                if (stored === 'dark' || stored === 'light') return stored;
+                return (media && media.matches) ? 'dark' : 'light';
+            }
+            function apply(theme) {
+                root.setAttribute('data-theme', theme);
+                updateLabel();
+            }
+            function updateLabel() {
+                var theme = effectiveTheme();
+                if (!btn) return;
+                // Don't set textContent - we're using SVG icons now
+                btn.title = 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode';
+                btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+            }
+            function toggle() {
+                var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+                apply(next);
+                writeStored(next);
+            }
+            if (btn) btn.addEventListener('click', toggle);
+            if (media && media.addEventListener) media.addEventListener('change', function () {
+                if (readStored() == null) apply(effectiveTheme()); else updateLabel();
+            });
+            apply(effectiveTheme());
+        })();
+
+        // Image lightbox functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+            
+            // Add click handler to all img-insight images
+            document.querySelectorAll('.img-insight').forEach(img => {
+                img.addEventListener('click', function() {
+                    lightbox.classList.add('active');
+                    lightboxImg.src = this.src;
+                    lightboxImg.alt = this.alt;
+                });
+            });
+            
+            // Close lightbox when clicking close button
+            closeBtn.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+            
+            // Close lightbox with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    
+    <!-- Custom JavaScript will go here -->
+    
+</body>
+</html>
