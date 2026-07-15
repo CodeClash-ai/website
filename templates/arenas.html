@@ -8,9 +8,27 @@
 </div>
 
 <div class="arenas-container">
+    <p class="arenas-legend">
+        <span
+            class="filter-chip"
+            data-filter="test"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            title="Click to highlight test set arenas"
+        ><span class="eval-badge">✚</span> Test set arena</span>
+        <span
+            class="filter-chip"
+            data-filter="ladder"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            title="Click to highlight arenas with a CC:Ladder"
+        ><span class="ladder-badge">🪜</span> Has a <a href="/insights/20260115_human_ai_ladder/">CC:Ladder</a></span>
+    </p>
     <div class="arenas-grid">
         {%- for page in pages | sort(attribute='title') %}
-        <a href="{{ url_for("page", path=page.path) }}">
+        <a href="{{ url_for("page", path=page.path) }}"{% if page.split == 'test' %} data-test{% endif %}{% if page.ladder %} data-ladder{% endif %}>
             <div class="arena-card">
                 <p class="arena-title">
                     <img
@@ -25,11 +43,35 @@
         </a>
         {%- endfor %}
     </div>
-    <p class="arenas-legend">
-        <span class="eval-badge">✚</span> = Test set arena
-        &nbsp;&bull;&nbsp;
-        <span class="ladder-badge">🪜</span> = Has a <a href="/insights/20260115_human_ai_ladder/">CC:Ladder</a>
-    </p>
 </div>
-
 {% endblock content %}
+
+{% block scripts %}
+<script>
+    // Arena filter chips: click a legend marker to highlight matching arenas.
+    // Hovering a chip previews the same dimming (see .filter-chip:hover in CSS).
+    (function () {
+        var container = document.querySelector('.arenas-container');
+        if (!container) return;
+
+        document.querySelectorAll('.arenas-legend .filter-chip').forEach(function (chip) {
+            function toggle() {
+                var name = chip.getAttribute('data-filter');
+                var active = container.classList.toggle('filter-' + name);
+                chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+            }
+            chip.addEventListener('click', toggle);
+            chip.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle();
+                }
+            });
+            // Let the nested CC:Ladder link navigate without toggling the filter.
+            chip.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function (e) { e.stopPropagation(); });
+            });
+        });
+    })();
+</script>
+{% endblock scripts %}

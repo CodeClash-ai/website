@@ -485,8 +485,25 @@ nav {
     gap: 1rem;
 }
 
+.arenas-grid a {
+    transition: opacity 0.25s ease;
+}
+
 .arenas-grid a:hover {
     border-bottom-color: transparent;
+}
+
+/* Filter/preview: dim non-matching arenas on chip hover (transient) or when a
+   filter is toggled on via .filter-* on the container (persistent). Both paths
+   share this rule, so hovering and clicking produce the identical effect. The
+   dimmed cards are also disabled — pointer-events: none removes the click and
+   suppresses the hover float animation in one stroke. */
+.arenas-container.filter-test .arenas-grid a:not([data-test]),
+.arenas-container:has(.filter-chip[data-filter="test"]:hover) .arenas-grid a:not([data-test]),
+.arenas-container.filter-ladder .arenas-grid a:not([data-ladder]),
+.arenas-container:has(.filter-chip[data-filter="ladder"]:hover) .arenas-grid a:not([data-ladder]) {
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 .arena-card {
@@ -529,10 +546,46 @@ nav {
 }
 
 .arenas-legend {
-    margin: 1.25rem 0 0 0;
+    margin: -0.75rem 0 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     text-align: center;
     color: var(--muted);
     font-size: var(--text-sm);
+}
+
+.filter-chip {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.2em 0.7em;
+    background-color: var(--bg);
+    user-select: none;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.filter-chip:hover {
+    color: var(--fg);
+    border-color: var(--accent);
+    box-shadow: 0 1px 4px var(--box-shadow);
+}
+
+.filter-chip:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.filter-chip[aria-pressed="true"] {
+    color: var(--fg);
+    border-color: var(--accent);
+    background-color: color-mix(in srgb, var(--accent) 18%, transparent);
+    font-weight: var(--weight-semibold);
 }
 
 .arenas-legend a {
